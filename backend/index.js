@@ -1,5 +1,7 @@
 const express = require('express');
+
  const { ApolloServer, gql } = require('apollo-server-express');
+
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
  type Query {
@@ -8,6 +10,7 @@ const typeDefs = gql`
 `;
 // Provide resolver functions for your schema fields
 const resolvers = {
+
  Query: {
  hello: () => 'Hello world!',
  },
@@ -21,4 +24,5 @@ server.start().then( res => {
  console.log(`🚀 Server ready at
 http://localhost:4000${server.graphqlPath}`)
  );
+
 })
