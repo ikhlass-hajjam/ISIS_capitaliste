@@ -12,7 +12,7 @@ module.exports = {
             "id": 1,
             "name": "Accras",
             "logo": "icones/premierproduit.jpg",
-            "cout": 4,
+            "cout": 3,
             "croissance": 1.07,
             "revenu": 1,
             "vitesse": 500,
