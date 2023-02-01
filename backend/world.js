@@ -10,7 +10,7 @@ module.exports = {
     "products": [
         {
             "id": 1,
-            "name": "premier produit",
+            "name": "Accras",
             "logo": "icones/premierproduit.jpg",
             "cout": 4,
             "croissance": 1.07,
@@ -30,21 +30,38 @@ module.exports = {
                     "unlocked": "false"
                 },
                 {
-                    "name": "Nom deuxième palier,
-        "logo": "icones/deuxiemepalier.jpg",
+                    "name": "Nom deuxième palier",
+                    "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": "false"
                 },
-        …
+
+
+            ]
         },
         {
             "id": 2,
-            "name": "Deuxième produit »,
-        "logo": "icones/deuxiemeproduit.jpg",
-        } …
+            "name": "Tajine",
+            "logo": "icones/deuxiemeproduit.jpg",
+            "seuil": 20,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "vitesse",
+            "unlocked": "false"
+        },
+        {
+            "name": "Nom deuxième palier",
+            "logo": "icones/deuxiemepalier.jpg",
+            "seuil": 75,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "vitesse",
+            "unlocked": "false"
+        },
+
     ],
     "allunlocks": [
         {
@@ -56,7 +73,7 @@ module.exports = {
             "typeratio": "gain",
             "unlocked": "false"
         },
-        …
+
     ],
     "upgrades": [
         {
@@ -68,7 +85,6 @@ module.exports = {
             "typeratio": "gain",
             "unlocked": "false"
         },
-        …
     ],
     "angelupgrades": [
         {
@@ -80,7 +96,6 @@ module.exports = {
             "typeratio": "gain",
             "unlocked": "false"
         },
-        …
     ],
     "managers": [
         {
@@ -92,6 +107,5 @@ module.exports = {
             "typeratio": "gain",
             "unlocked": "false"
         },
-        …
     ]
 };
