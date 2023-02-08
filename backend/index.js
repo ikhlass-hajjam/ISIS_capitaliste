@@ -10,7 +10,8 @@ const resolvers = require("./resolvers");
 
 const server = new ApolloServer({
     typeDefs, resolvers ,context: async ({ req }) => ({
-        world: world
+        world: world,
+        user: req.headers["x-user"]
     })
 });
 const app = express();
