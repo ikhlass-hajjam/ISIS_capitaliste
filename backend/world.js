@@ -1,5 +1,5 @@
 module.exports = {
-    "name": "Nom du monde",
+    "name": "Marloupe",
     "logo": "icones/logomonde.jpg",
     "money": 0,
     "score": 0,
@@ -21,16 +21,16 @@ module.exports = {
             "managerUnlocked": false,
             "palliers": [
                 {
-                    "name": "Nom du premier palier",
+                    "name": "Manman Kréyol",
                     "logo": "icones/premierpalier.jpg",
-                    "seuil": 20,
+                    "seuil": 1000,
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": "false"
                 },
                 {
-                    "name": "Nom deuxième palier",
+                    "name": "Jasmine",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
                     "idcible": 1,
