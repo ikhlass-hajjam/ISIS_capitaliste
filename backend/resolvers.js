@@ -8,7 +8,7 @@ module.exports = {
     },
     Mutation: {
         acheterQtProduit(parent, args, context) {
-            scaleScore(parent,args, context)
+            scaleScore(parent, args, context)
             let produit = context.world.products.find(p => p.id === args.id)
             if (produit === undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
@@ -35,7 +35,7 @@ module.exports = {
 
 
         lancerProductionProduit(parent, args, context) {
-            scaleScore(parent,args, context)
+            scaleScore(parent, args, context)
             let produit = context.world.products.find(p => p.id === args.id)
             if (produit === undefined) {
                 throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
@@ -46,7 +46,7 @@ module.exports = {
         },
 
         engagerManager(parent, args, context) {
-            scaleScore(parent,args, context)
+            scaleScore(parent, args, context)
             let manager = context.world.managers.find(m => m.id === args.id)
             if (manager === undefined) {
                 throw new Error(`Le manager avec l'id ${args.id} n'existe pas`)
@@ -58,25 +58,35 @@ module.exports = {
             } saveWorld(context)
         }
     },
-    scaleScore(parent,args, context){
-        world.context.products.forEach(function(p){
+    scaleScore(parent, args, context) {
+        world.context.products.forEach(function (p) {
+            let nbreProduction = 0;
+            let tempsEcoule = Date.now() - context.world.lastupdate;
+            //Manager débloqué
+            if (p.managerUnlock) {
+                //Combien de produit on été fait pendant le temps écoulé
+                nbreProduction = tempsEcoule / produit.vitesse
+                //Pour savoir le temps restant pour produit une autre unité
+                Reste = tempsEcoule % produit.vitesse
+                
+                if (p.timeLeft - tempsEcoule > 0) {
+                    nouveauTempsRestant = p.timeLeft + Reste
+                    produit.quantite += nbreProduction
+                }
 
-            let tempsEcoule = Date.now()-context.world.lastupdate 
-            if(p.managerUnlock){
-                //Combien de produit on été fait pendant le temps écoulé 
-                let nbreProduction = tempsEcoule / produit.vitesse
-                //mettre à jour le porte monnaie
-                context.world.money = context.world.money + 
-
-            }else{
+            } else {
                 //production d'un produit sans manager (pas automatisé) mais qu'on lance la production
-                if(tempsEcoule == product.vitesse){
+                if (p.timeLeft > 0) {
+                    p.timeLeft -= tempsEcoule
                     produit.quantite = produit.quantite + 1
+                } else {
+                    p.timeLeft = 0;
                 }
 
             }
-        }        
-        
+            context.world.money += nbreProduction * produit.revenu
+        }
+
         );
     }
 };
