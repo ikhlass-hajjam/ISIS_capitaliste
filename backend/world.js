@@ -1,7 +1,7 @@
 module.exports = {
-    "name": "Marloupe",
+    "name": "Nice Marloupe",
     "logo": "icones/logomonde.jpg",
-    "money": 0,
+    "money": 97180,
     "score": 0,
     "totalangels": 0,
     "activeangels": 0,
@@ -22,7 +22,7 @@ module.exports = {
             "palliers": [
                 {
                     "name": "Manman Kréyol",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icones/Manman.jpg",
                     "seuil": 1000,
                     "idcible": 1,
                     "ratio": 2,
@@ -45,7 +45,7 @@ module.exports = {
         {
             "id": 2,
             "name": "Tajine",
-            "logo": "icones/deuxiemeproduit.jpg",
+            "logo": "icones/tajine.jpg",
             "seuil": 20,
             "idcible": 1,
             "ratio": 2,
@@ -53,8 +53,9 @@ module.exports = {
             "unlocked": "false"
         },
         {
-            "name": "Nom deuxième palier",
-            "logo": "icones/deuxiemepalier.jpg",
+            "id": 3,
+            "name": "Accras",
+            "logo": "icones/accras.jpg",
             "seuil": 75,
             "idcible": 1,
             "ratio": 2,
