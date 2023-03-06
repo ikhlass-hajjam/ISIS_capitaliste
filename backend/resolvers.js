@@ -18,15 +18,15 @@ module.exports = {
                 console.log(produit.quantite)
 
                 //cout d'achat du produit 
-                produit.cout = (1 - Math.pow(produit.croissance, args.quantite + 1)) / (1 - produit.croissance)
-                console.log(produit.cout)
+                let PrixAchat = (1 - Math.pow(produit.croissance, args.quantite ))/(1 - produit.croissance)
+                console.log(PrixAchat)
 
                 //capital, montant contenu dans le porte-monnaie
-                context.world.money = context.world.money - produit.cout
+                context.world.money = context.world.money - PrixAchat
                 console.log(context.world.money)
                 //mise à jour du cout du produit
-                let nouveauPrix = produit.cout * Math.pow(produit.croissance, args.quantite);
-                console.log(nouveauPrix)
+                produit.cout = produit.cout * Math.pow(produit.croissance, args.quantite)
+                console.log(produit.cout)
                 context.world.lastupdate = Date.now()
             } saveWorld(context)
 
@@ -51,44 +51,14 @@ module.exports = {
             if (manager === undefined) {
                 throw new Error(`Le manager avec l'id ${args.id} n'existe pas`)
             } else {
-                //débloquer le manager en passant les proprétés à vrai
+                //débloquer le manager en passant les propriétés à vrai
                 managerUnlock = true;
                 unlocked = true;
                 context.world.lastupdate = Date.now()
             } saveWorld(context)
         }
     },
-    scaleScore(parent, args, context) {
-        world.context.products.forEach(function (p) {
-            let nbreProduction = 0;
-            let tempsEcoule = Date.now() - context.world.lastupdate;
-            //Manager débloqué
-            if (p.managerUnlock) {
-                //Combien de produit on été fait pendant le temps écoulé
-                nbreProduction = tempsEcoule / produit.vitesse
-                //Pour savoir le temps restant pour produit une autre unité
-                Reste = tempsEcoule % produit.vitesse
-                
-                if (p.timeLeft - tempsEcoule > 0) {
-                    nouveauTempsRestant = p.timeLeft + Reste
-                    produit.quantite += nbreProduction
-                }
-
-            } else {
-                //production d'un produit sans manager (pas automatisé) mais qu'on lance la production
-                if (p.timeLeft > 0) {
-                    p.timeLeft -= tempsEcoule
-                    produit.quantite = produit.quantite + 1
-                } else {
-                    p.timeLeft = 0;
-                }
-
-            }
-            context.world.money += nbreProduction * produit.revenu
-        }
-
-        );
-    }
+    
 };
 
 function saveWorld(context) {
@@ -99,4 +69,35 @@ function saveWorld(context) {
                 throw new Error(`Erreur d'écriture du monde coté serveur`)
             }
         })
+}
+function scaleScore(parent, args, context) {
+    context.world.products.forEach(function (p) {
+        let nbreProduction = 0;
+        let tempsEcoule = Date.now() - context.world.lastupdate;
+        //Manager débloqué
+        if (p.managerUnlocked) {
+            //Combien de produit on été fait pendant le temps écoulé
+            nbreProduction = tempsEcoule / p.vitesse
+            //Pour savoir le temps restant pour produit une autre unité
+            Reste = tempsEcoule % p.vitesse
+            
+            if (p.timeLeft - tempsEcoule > 0) {
+                nouveauTempsRestant = p.timeLeft + Reste
+                p.quantite += nbreProduction
+            }
+
+        } else {
+            //production d'un produit sans manager (pas automatisé) mais qu'on lance la production
+            if (p.timeLeft > 0) {
+                p.timeLeft -= tempsEcoule
+                p.quantite = p.quantite + 1
+            } else {
+                p.timeLeft = 0;
+            }
+
+        }
+        context.world.money += nbreProduction * p.revenu * p.quantite
+    }
+
+    );
 }

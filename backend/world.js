@@ -33,7 +33,7 @@ module.exports = {
                     "name": "Jasmine",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
-                    "idcible": 1,
+                    "idcible": 3,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
