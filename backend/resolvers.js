@@ -18,7 +18,7 @@ module.exports = {
                 console.log(produit.quantite)
 
                 //cout d'achat du produit 
-                let PrixAchat = (1 - Math.pow(produit.croissance, args.quantite ))/(1 - produit.croissance)
+                let PrixAchat = (Math.pow(produit.croissance, args.quantite )-1)/( produit.croissance -1)*produit.cout
                 console.log(PrixAchat)
 
                 //capital, montant contenu dans le porte-monnaie
@@ -52,10 +52,12 @@ module.exports = {
                 throw new Error(`Le manager avec l'id ${args.id} n'existe pas`)
             } else {
                 //débloquer le manager en passant les propriétés à vrai
-                managerUnlock = true;
+                managerUnlocked = true;
                 unlocked = true;
                 context.world.lastupdate = Date.now()
+                
             } saveWorld(context)
+            return manager
         }
     },
     

@@ -1,7 +1,7 @@
 module.exports = {
     "name": "Nice Marloupe",
     "logo": "icones/logomonde.jpg",
-    "money": 97180,
+    "money": 1000,
     "score": 0,
     "totalangels": 0,
     "activeangels": 0,
@@ -21,29 +21,29 @@ module.exports = {
             "managerUnlocked": false,
             "palliers": [
                 {
-                    "name": "Manman Kréyol",
-                    "logo": "icones/Manman.jpg",
-                    "seuil": 1000,
-                    "idcible": 1,
-                    "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": false
-                },
-                {
                     "name": "Jasmine",
                     "logo": "icones/deuxiemepalier.jpg",
                     "seuil": 75,
-                    "idcible": 3,
+                    "idcible": 1,
+                    "ratio": 2,
+                    "typeratio": "vitesse",
+                    "unlocked": false 
+                },
+                {
+                    "name": "Manman Kréyol",
+                    "logo": "icones/Manman.jpg",
+                    "seuil": 1000,
+                    "idcible": 2,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
                 },
-
+                
 
             ]
         },
         {
-            "id": 2,
+            "id": 1,
             "name": "Tajine",
             "logo": "icones/tajine.jpg",
             "seuil": 20,
@@ -53,9 +53,39 @@ module.exports = {
             "unlocked": false
         },
         {
-            "id": 3,
+            "id": 2,
             "name": "Accras",
             "logo": "icones/accras.jpg",
+            "seuil": 75,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "vitesse",
+            "unlocked": false
+        },
+        {
+            "id": 3,
+            "name": "Harira",
+            "logo": "icones/harira.jpg",
+            "seuil": 125,
+            "idcible": 3,
+            "ratio": 2.5,
+            "typeratio": "vitesse",
+            "unlocked": false
+        },
+        {
+            "id": 4,
+            "name": "Langouste",
+            "logo": "icones/langouste.jpg",
+            "seuil": 75,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "vitesse",
+            "unlocked": false
+        },
+        {
+            "id": 5,
+            "name": "Chichi",
+            "logo": "icones/chichi.jpg",
             "seuil": 75,
             "idcible": 1,
             "ratio": 2,
@@ -100,13 +130,13 @@ module.exports = {
     ],
     "managers": [
         {
-            "name": "Wangari Maathai",
-            "logo": "icones/WangariMaathai.jpg",
-            "seuil": 10,
-            "idcible": 1,
-            "ratio": 0,
-            "typeratio": "gain",
-            "unlocked": false
-        },
+        "name": "Jasmine",
+        "logo": "icones/deuxiemepalier.jpg",
+        "seuil": 10,
+        "idcible": 1,
+        "ratio": 2,
+        "typeratio": "gain",
+        "unlocked": false 
+    },
     ]
 };
