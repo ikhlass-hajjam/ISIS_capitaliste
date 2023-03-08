@@ -21,22 +21,7 @@ module.exports = {
             "managerUnlocked": false,
             "palliers": [
                 {
-                    "name": "Jasmine",
-                    "logo": "icones/deuxiemepalier.jpg",
-                    "seuil": 75,
-                    "idcible": 1,
-                    "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": false 
-                },
-                {
-                    "name": "Manman Kréyol",
-                    "logo": "icones/Manman.jpg",
-                    "seuil": 1000,
-                    "idcible": 2,
-                    "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": false
+            
                 },
                 
 
@@ -110,7 +95,7 @@ module.exports = {
         {
             "name": "Nom du premier upgrade",
             "logo": "icones/premierupgrade.jpg",
-            "seuil": 1e3,
+            "seuil": 13,
             "idcible": 1,
             "ratio": 3,
             "typeratio": "gain",
@@ -130,13 +115,21 @@ module.exports = {
     ],
     "managers": [
         {
-        "name": "Jasmine",
-        "logo": "icones/deuxiemepalier.jpg",
-        "seuil": 10,
-        "idcible": 1,
-        "ratio": 2,
-        "typeratio": "gain",
-        "unlocked": false 
+            "name": "Jasmine",
+            "logo": "icones/deuxiemepalier.jpg",
+            "seuil": 75,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "vitesse",
+            "unlocked": false 
     },
+    {       "name": "Manman Kréyol",
+            "logo": "icones/Manman.jpg",
+            "seuil": 1000,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "vitesse",
+            "unlocked": false
+},
     ]
 };

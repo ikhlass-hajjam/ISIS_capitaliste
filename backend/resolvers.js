@@ -47,9 +47,9 @@ module.exports = {
 
         engagerManager(parent, args, context) {
             scaleScore(parent, args, context)
-            let manager = context.world.managers.find(m => m.id === args.id)
+            let manager = context.world.managers.find(m => m.name === args.name)
             if (manager === undefined) {
-                throw new Error(`Le manager avec l'id ${args.id} n'existe pas`)
+                throw new Error(`Le manager avec le nom ${args.name} n'existe pas`)
             } else {
                 //débloquer le manager en passant les propriétés à vrai
                 managerUnlocked = true;
