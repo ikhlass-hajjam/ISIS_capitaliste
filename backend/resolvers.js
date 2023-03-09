@@ -18,7 +18,7 @@ module.exports = {
                 console.log(produit.quantite)
 
                 //cout d'achat du produit 
-                let PrixAchat = (Math.pow(produit.croissance, args.quantite )-1)/( produit.croissance -1)*produit.cout
+                let PrixAchat = (Math.pow(produit.croissance, args.quantite) - 1) / (produit.croissance - 1) * produit.cout
                 console.log(PrixAchat)
 
                 //capital, montant contenu dans le porte-monnaie
@@ -47,20 +47,33 @@ module.exports = {
 
         engagerManager(parent, args, context) {
             scaleScore(parent, args, context)
+
             let manager = context.world.managers.find(m => m.name === args.name)
+            let produit = context.world.products.find(p => p.id === manager.idcible)
             if (manager === undefined) {
                 throw new Error(`Le manager avec le nom ${args.name} n'existe pas`)
             } else {
                 //débloquer le manager en passant les propriétés à vrai
-                managerUnlocked = true;
-                unlocked = true;
+                manager.unlocked = true;
+                produit.managerUnlocked = true;
                 context.world.lastupdate = Date.now()
-                
+
             } saveWorld(context)
             return manager
-        }
+        },
+        resetWorld(parents, args, context) {
+            //réinitialisation l'argent du monde à sa valeur initiale 
+            let argent = context.world.money
+            argent = 1000
+            //Réinitialisation de la quantité de produit à zéro
+            let QuantiteProduit = context.world.products
+            QuantiteProduit = 0
+
+            return context.world
+        },
     },
-    
+
+
 };
 
 function saveWorld(context) {
@@ -82,7 +95,7 @@ function scaleScore(parent, args, context) {
             nbreProduction = tempsEcoule / p.vitesse
             //Pour savoir le temps restant pour produit une autre unité
             Reste = tempsEcoule % p.vitesse
-            
+
             if (p.timeLeft - tempsEcoule > 0) {
                 nouveauTempsRestant = p.timeLeft + Reste
                 p.quantite += nbreProduction
