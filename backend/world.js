@@ -37,78 +37,116 @@ module.exports = {
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
-            },
+                },
 
-    ]
-},
-{
-    "id": 2,
-    "name": "Tajine",
-    "logo": "icones/tajine.jpg",
-    "cout": 10,
-    "croissance": 2.1,
-    "revenu": 25,
-    "vitesse": 2500,
-    "quantite": 1,
-    "timeleft": 0,
-    "managerUnlocked": false,
-    "paliers": [
+            ]
+        },
         {
-            "name": "Nom du premier palier",
-            "logo": "icones/premierpalier.jpg",
-            "seuil": 20,
-            "idcible": 2,
+            "id": 2,
+            "name": "Tajine",
+            "logo": "icones/tajine.jpg",
+            "cout": 10,
+            "croissance": 2.1,
+            "revenu": 25,
+            "vitesse": 2500,
+            "quantite": 1,
+            "timeleft": 0,
+            "managerUnlocked": false,
+            "paliers": [
+                {
+                    "name": "Nom du premier palier",
+                    "logo": "icones/premierpalier.jpg",
+                    "seuil": 20,
+                    "idcible": 2,
+                    "ratio": 2,
+                    "typeratio": "vitesse",
+                    "unlocked": false
+                },
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Harira",
+            "logo": "icones/harira.jpg",
+            "cout": 10,
+            "croissance": 2.1,
+            "revenu": 25,
+            "vitesse": 2500,
+            "quantite": 1,
+            "timeleft": 0,
+            "managerUnlocked": false,
+            "paliers": [
+                {
+                    "name": "Nom du premier palier",
+                    "logo": "icones/premierpalier.jpg",
+                    "seuil": 125,
+                    "idcible": 3,
+                    "ratio": 2.5,
+                    "typeratio": "vitesse",
+                    "unlocked": false
+                },
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Langouste",
+            "logo": "icones/langouste.jpg",
+            "cout": 10,
+            "croissance": 2.1,
+            "revenu": 25,
+            "vitesse": 2500,
+            "quantite": 1,
+            "timeleft": 0,
+            "managerUnlocked": false,
+            "paliers": [
+                {
+                    "name": "Nom du premier palier",
+                    "logo": "icones/premierpalier.jpg",
+                    "seuil": 200,
+                    "idcible": 4,
+                    "ratio": 2,
+                    "typeratio": "vitesse",
+                    "unlocked": false
+                },
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Chichi",
+            "logo": "icones/chichi.jpg",
+            "cout": 10,
+            "croissance": 2.1,
+            "revenu": 25,
+            "vitesse": 2500,
+            "quantite": 1,
+            "timeleft": 0,
+            "managerUnlocked": false,
+            "paliers": [
+                {
+                    "name": "Nom du premier palier",
+                    "logo": "icones/premierpalier.jpg",
+                    "seuil": 75,
+                    "idcible": 5,
+                    "ratio": 2,
+                    "typeratio": "vitesse",
+                    "unlocked": false
+                },
+            ]
+        },
+        
+    ],
+    "allunlocks": [
+        {
+            "name": "Unlock *2 ",
+            "logo": "icones/premierunlock.jpg",
+            "seuil": 100,
+            "idcible": 0,
             "ratio": 2,
-            "typeratio": "vitesse",
+            "typeratio": "gain",
             "unlocked": false
         },
-    ]
-},
-
-{
-    "id": 3,
-    "name": "Harira",
-    "logo": "icones/harira.jpg",
-    "seuil": 125,
-    "idcible": 3,
-    "ratio": 2.5,
-    "typeratio": "vitesse",
-    "unlocked": false
-},
-{
-    "id": 4,
-    "name": "Langouste",
-    "logo": "icones/langouste.jpg",
-    "seuil": 200,
-    "idcible": 4,
-    "ratio": 2,
-    "typeratio": "vitesse",
-    "unlocked": false
-},
-{
-    "id": 5,
-    "name": "Chichi",
-    "logo": "icones/chichi.jpg",
-    "seuil": 75,
-    "idcible": 5,
-    "ratio": 2,
-    "typeratio": "vitesse",
-    "unlocked": false
-},
 
     ],
-"allunlocks": [
-    {
-        "name": "Nom du premier unlock général",
-        "logo": "icones/premierunlock.jpg",
-        "seuil": 30,
-        "idcible": 0,
-        "ratio": 2,
-        "typeratio": "gain",
-        "unlocked": false
-    },
-
-],
     "upgrades": [
         {
             "name": "Nom du premier upgrade",
@@ -120,35 +158,53 @@ module.exports = {
             "unlocked": false
         },
     ],
-        "angelupgrades": [
-            {
-                "name": "Angel Sacrifice",
-                "logo": "icones/angel.png",
-                "seuil": 10,
-                "idcible": 0,
-                "ratio": 3,
-                "typeratio": "gain",
-                "unlocked": false
-            },
-        ],
-            "managers": [
-                {
-                    "name": "Jasmine",
-                    "logo": "icones/deuxiemepalier.jpg",
-                    "seuil": 75,
-                    "idcible": 1,
-                    "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": false
-                },
-                {
-                    "name": "Manman Kréyol",
-                    "logo": "icones/Manman.jpg",
-                    "seuil": 1000,
-                    "idcible": 2,
-                    "ratio": 2,
-                    "typeratio": "vitesse",
-                    "unlocked": false
-                },
-            ]
+    "angelupgrades": [
+        {
+            "name": "Angel Sacrifice",
+            "logo": "icones/angel.png",
+            "seuil": 10,
+            "idcible": 0,
+            "ratio": 3,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+    ],
+    "managers": [
+        {
+            "name": "Manman Kréyol",
+            "logo": "icones/Manman.jpg",
+            "seuil": 75,
+            "idcible": 1,
+            "ratio": 2,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Jasmine",
+            "logo": "icones/Jasmine.jpg",
+            "seuil": 100,
+            "idcible": 2,
+            "ratio": 2,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Moha",
+            "logo": "icones/Moha.jpg",
+            "seuil": 150,
+            "idcible": 3,
+            "ratio": 2,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Ludo",
+            "logo": "icones/LangousteMan.jpg",
+            "seuil": 200,
+            "idcible": 4,
+            "ratio": 2,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+    ]
 };
