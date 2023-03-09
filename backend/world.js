@@ -21,9 +21,23 @@ module.exports = {
             "managerUnlocked": false,
             "paliers": [
                 {
-            
+                    "name": "Nom du premier palier",
+                    "logo": "icones/premierpalier.jpg",
+                    "seuil": 20,
+                    "idcible": 1,
+                    "ratio": 2,
+                    "typeratio": "vitesse",
+                    "unlocked": false
                 },
-                
+                {
+                    "name": "Nom deuxième palier",
+                    "logo": "icones/deuxiemepalier.jpg",
+                    "seuil": 75,
+                    "idcible": 1,
+                    "ratio": 2,
+                    "typeratio": "vitesse",
+                    "unlocked": false
+            },
 
             ]
         },
@@ -36,6 +50,7 @@ module.exports = {
             "ratio": 2,
             "typeratio": "vitesse",
             "unlocked": false
+
         },
         {
             "id": 2,
