@@ -133,6 +133,29 @@ module.exports = {
                 },
             ]
         },
+        {
+            "id": 6,
+            "name": "Corne de gazelle",
+            "logo": "icones/cornegazelle.jpg",
+            "cout": 10,
+            "croissance": 2.1,
+            "revenu": 25,
+            "vitesse": 2500,
+            "quantite": 1,
+            "timeleft": 0,
+            "managerUnlocked": false,
+            "paliers": [
+                {
+                    "name": "Nom du premier palier",
+                    "logo": "icones/premierpalier.jpg",
+                    "seuil": 75,
+                    "idcible": 5,
+                    "ratio": 2,
+                    "typeratio": "vitesse",
+                    "unlocked": false
+                },
+            ]
+        },
         
     ],
     "allunlocks": [

@@ -2,7 +2,6 @@ const fs = require("fs").promises
 module.exports = {
     Query: {
         getWorld(parent, args, context) {
-            scaleScore(context)
             saveWorld(context)
             return context.world
         }
