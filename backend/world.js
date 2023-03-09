@@ -14,7 +14,7 @@ module.exports = {
             "logo": "icones/premierproduit.jpg",
             "cout": 3,
             "croissance": 1.07,
-            "revenu": 10,
+            "revenu": 1,
             "vitesse": 500,
             "quantite": 1,
             "timeleft": 0,
