@@ -27,7 +27,7 @@ module.exports = {
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
                 },
                 {
                     "name": "Nom deuxième palier",
@@ -36,7 +36,7 @@ module.exports = {
                     "idcible": 1,
                     "ratio": 2,
                     "typeratio": "vitesse",
-                    "unlocked": "false"
+                    "unlocked": false
             },
 
     ]
@@ -60,7 +60,7 @@ module.exports = {
             "idcible": 2,
             "ratio": 2,
             "typeratio": "vitesse",
-            "unlocked": "false"
+            "unlocked": false
         },
     ]
 },
