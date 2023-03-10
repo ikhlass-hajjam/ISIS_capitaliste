@@ -137,9 +137,9 @@ module.exports = {
             "id": 6,
             "name": "Corne de gazelle",
             "logo": "icones/cornegazelle.jpg",
-            "cout": 10,
-            "croissance": 2.1,
-            "revenu": 25,
+            "cout": 1500,
+            "croissance": 10,
+            "revenu": 1500,
             "vitesse": 2500,
             "quantite": 1,
             "timeleft": 0,
@@ -149,7 +149,7 @@ module.exports = {
                     "name": "Nom du premier palier",
                     "logo": "icones/premierpalier.jpg",
                     "seuil": 75,
-                    "idcible": 5,
+                    "idcible": 6,
                     "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
@@ -225,6 +225,24 @@ module.exports = {
             "logo": "icones/LangousteMan.jpg",
             "seuil": 200,
             "idcible": 4,
+            "ratio": 2,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Mélissa",
+            "logo": "icones/FemmeGwada.jpg",
+            "seuil": 200,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Fatima",
+            "logo": "icones/fatima.jpg",
+            "seuil": 200,
+            "idcible": 6,
             "ratio": 2,
             "typeratio": "gain",
             "unlocked": false
