@@ -161,9 +161,9 @@ module.exports = {
     "allunlocks": [
         {
             "name": "Unlock 1 ",
-            "logo": "icones/premierunlock.jpg",
-            "seuil": 100,
-            "idcible": 0,
+            "logo": "icones/cadenas.png",
+            "seuil": 150,
+            "idcible": 1,
             "ratio": 2,
             "typeratio": "gain",
             "unlocked": false
@@ -172,9 +172,18 @@ module.exports = {
     ],
     "upgrades": [
         {
-            "name": "Nom du premier upgrade",
+            "name": "Bénéfices multipliés par 2",
             "logo": "icones/premierupgrade.jpg",
-            "seuil": 13,
+            "seuil": 150,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Bénéfices multipliés par 3",
+            "logo": "icones/premierupgrade.jpg",
+            "seuil": 250,
             "idcible": 1,
             "ratio": 3,
             "typeratio": "gain",

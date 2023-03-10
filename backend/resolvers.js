@@ -27,6 +27,9 @@ module.exports = {
                 //mise à jour du cout du produit
                 produit.cout = produit.cout * Math.pow(produit.croissance, args.quantite)
                 console.log(produit.cout)
+
+                //gain de revenu en fonction de la quantité de produit acheté
+                produit.revenu = produit.revenu * args.quantite
                 context.world.lastupdate = Date.now()
             } saveWorld(context)
 
@@ -48,6 +51,7 @@ module.exports = {
         engagerManager(parent, args, context) {
             scaleScore(parent, args, context)
             let manager = context.world.managers.find(m => m.name === args.name)
+            console.log(manager.idcible)
             let produit = context.world.products.find(p => p.id === manager.idcible)
             if (manager === undefined) {
                 throw new Error(`Le manager avec le nom ${args.name} n'existe pas`)
@@ -56,17 +60,19 @@ module.exports = {
                 manager.unlocked = true;
                 produit.managerUnlocked = true;
                 context.world.lastupdate = Date.now()
-
-            } saveWorld(context)
-            return manager
+                
+                saveWorld(context)
+               
+            }  return manager
         },
         resetWorld(parents, args, context) {
             //réinitialisation l'argent du monde à sa valeur initiale 
-            let argent = context.world.money
-            argent = 1000
+            context.world.money = 1000
             //Réinitialisation de la quantité de produit à zéro
             let QuantiteProduit = context.world.products
             QuantiteProduit = 0
+            //Aucun manager débloqué à la réinitialisation du monde
+            managerUnlocked = false;
 
             return context.world
         },
@@ -91,7 +97,7 @@ function scaleScore(parent, args, context) {
         //Manager débloqué
         if (p.managerUnlocked) {
             //Combien de produit on été fait pendant le temps écoulé
-            nbreProduction = tempsEcoule / p.vitesse
+            nbreProduction = tempsEcoule / p.vitesse +1
             //Pour savoir le temps restant pour produit une autre unité
             Reste = tempsEcoule % p.vitesse
 
@@ -115,3 +121,14 @@ function scaleScore(parent, args, context) {
 
     );
 }
+function cashUpgrade(parent, args, context) {
+    // Parcourt les produits pour multiplier leur revenu par le facteur de ratio de l'upgrade
+    let produit = context.world.products.find(p => p.id === args.id)
+    context.world.products.forEach(function (p) {
+      product.benefice *= upgradeRatio;
+    });
+    
+    // Retourne la liste des produits mis à jour avec les nouveaux bénéfices
+    return products;
+  }
+  
