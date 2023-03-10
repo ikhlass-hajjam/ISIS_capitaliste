@@ -11,7 +11,7 @@ module.exports = {
         {
             "id": 1,
             "name": "Accras",
-            "logo": "icones/premierproduit.jpg",
+            "logo": "icones/accras.jpg",
             "cout": 3,
             "croissance": 1.07,
             "revenu": 1,
