@@ -121,14 +121,14 @@ function scaleScore(parent, args, context) {
 
     );
 }
-function cashUpgrade(parent, args, context) {
+/*function cashUpgrade(parent, args, context) {
     // Parcourt les produits pour multiplier leur revenu par le facteur de ratio de l'upgrade
     let produit = context.world.products.find(p => p.id === args.id)
-    context.world.products.forEach(function (p) {
-      product.benefice *= upgradeRatio;
+    context.world.produits.forEach(function (p) {
+     
     });
     
     // Retourne la liste des produits mis à jour avec les nouveaux bénéfices
-    return products;
-  }
+    return produits;
+  }*/
   
