@@ -47,7 +47,6 @@ module.exports = {
 
         engagerManager(parent, args, context) {
             scaleScore(parent, args, context)
-
             let manager = context.world.managers.find(m => m.name === args.name)
             let produit = context.world.products.find(p => p.id === manager.idcible)
             if (manager === undefined) {
