@@ -1,6 +1,6 @@
 module.exports = {
     "name": "Nice Marloupe",
-    "logo": "icones/logomonde.jfif",
+    "logo": "icones/backgroudwelcome.jpg",
     "money": 1000,
     "score": 0,
     "totalangels": 0,
@@ -21,8 +21,8 @@ module.exports = {
             "managerUnlocked": false,
             "paliers": [
                 {
-                    "name": "Premiere étoile",
-                    "logo": "icones/premierpalier.jpg",
+                    "name": "Une étoile",
+                    "logo": "icones/Etoile1.jpg",
                     "seuil": 20,
                     "idcible": 1,
                     "ratio": 2,
@@ -30,8 +30,8 @@ module.exports = {
                     "unlocked": false
                 },
                 {
-                    "name": "Nom deuxième palier",
-                    "logo": "icones/deuxiemepalier.jpg",
+                    "name": "2 étoiles",
+                    "logo": "icones/2etoiles.jpg",
                     "seuil": 75,
                     "idcible": 1,
                     "ratio": 2,
@@ -55,7 +55,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "Nom du premier palier",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icones/Etoile1.jpg",
                     "seuil": 20,
                     "idcible": 2,
                     "ratio": 2,
@@ -78,7 +78,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "Nom du premier palier",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icones/Etoile1.jpg",
                     "seuil": 125,
                     "idcible": 3,
                     "ratio": 2.5,
@@ -101,7 +101,7 @@ module.exports = {
             "paliers": [
                 {
                     "name": "Nom du premier palier",
-                    "logo": "icones/premierpalier.jpg",
+                    "logo": "icones/Etoile1.jpg",
                     "seuil": 200,
                     "idcible": 4,
                     "ratio": 2,
@@ -123,8 +123,8 @@ module.exports = {
             "managerUnlocked": false,
             "paliers": [
                 {
-                    "name": "Nom du premier palier",
-                    "logo": "icones/premierpalier.jpg",
+                    "name": "Une étoile",
+                    "logo": "icones/Etoile1.jpg",
                     "seuil": 75,
                     "idcible": 5,
                     "ratio": 2,
@@ -146,8 +146,8 @@ module.exports = {
             "managerUnlocked": false,
             "paliers": [
                 {
-                    "name": "Nom du premier palier",
-                    "logo": "icones/premierpalier.jpg",
+                    "name": "Une étoile",
+                    "logo": "icones/Etoile1.jpg",
                     "seuil": 75,
                     "idcible": 6,
                     "ratio": 2,
@@ -160,7 +160,7 @@ module.exports = {
     ],
     "allunlocks": [
         {
-            "name": "Unlock *2 ",
+            "name": "Unlock 1 ",
             "logo": "icones/premierunlock.jpg",
             "seuil": 100,
             "idcible": 0,
@@ -222,7 +222,7 @@ module.exports = {
         },
         {
             "name": "Ludo",
-            "logo": "icones/LangousteMan.jpg",
+            "logo": "icones/LangousteMan.png",
             "seuil": 200,
             "idcible": 4,
             "ratio": 2,
