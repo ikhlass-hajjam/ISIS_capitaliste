@@ -1,6 +1,6 @@
 module.exports = {
     "name": "Nice Marloupe",
-    "logo": "icones/logomonde.jpg",
+    "logo": "icones/logomonde.jfif",
     "money": 1000,
     "score": 0,
     "totalangels": 0,
@@ -14,14 +14,14 @@ module.exports = {
             "logo": "icones/accras.jpg",
             "cout": 3,
             "croissance": 1.07,
-            "revenu": 1,
+            "revenu": 5,
             "vitesse": 500,
             "quantite": 1,
             "timeleft": 0,
             "managerUnlocked": false,
             "paliers": [
                 {
-                    "name": "Nom du premier palier",
+                    "name": "Premiere étoile",
                     "logo": "icones/premierpalier.jpg",
                     "seuil": 20,
                     "idcible": 1,
