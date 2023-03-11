@@ -173,7 +173,7 @@ module.exports = {
     "upgrades": [
         {
             "name": "Bénéfices multipliés par 2",
-            "logo": "icones/premierupgrade.jpg",
+            "logo": "icones/cadenas.jpg",
             "seuil": 150,
             "idcible": 5,
             "ratio": 2,
@@ -232,7 +232,7 @@ module.exports = {
         {
             "name": "Ludo",
             "logo": "icones/LangousteMan.png",
-            "seuil": 200,
+            "seuil": 400,
             "idcible": 4,
             "ratio": 1,
             "typeratio": "gain",
@@ -241,7 +241,7 @@ module.exports = {
         {
             "name": "Mélissa",
             "logo": "icones/FemmeGwada.jpg",
-            "seuil": 200,
+            "seuil": 900,
             "idcible": 5,
             "ratio": 1,
             "typeratio": "gain",
@@ -250,7 +250,7 @@ module.exports = {
         {
             "name": "Fatima",
             "logo": "icones/fatima.jpg",
-            "seuil": 200,
+            "seuil": 2500,
             "idcible": 6,
             "ratio": 1,
             "typeratio": "gain",
