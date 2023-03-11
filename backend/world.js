@@ -81,7 +81,7 @@ module.exports = {
                     "logo": "icones/Etoile1.jpg",
                     "seuil": 125,
                     "idcible": 3,
-                    "ratio": 2.5,
+                    "ratio": 2,
                     "typeratio": "vitesse",
                     "unlocked": false
                 },
@@ -207,7 +207,7 @@ module.exports = {
             "logo": "icones/Manman.jpg",
             "seuil": 75,
             "idcible": 1,
-            "ratio": 2,
+            "ratio": 1,
             "typeratio": "gain",
             "unlocked": false
         },
@@ -216,7 +216,7 @@ module.exports = {
             "logo": "icones/Jasmine.jpg",
             "seuil": 100,
             "idcible": 2,
-            "ratio": 2,
+            "ratio": 1,
             "typeratio": "gain",
             "unlocked": false
         },
@@ -225,7 +225,7 @@ module.exports = {
             "logo": "icones/Moha.jpg",
             "seuil": 150,
             "idcible": 3,
-            "ratio": 2,
+            "ratio": 1,
             "typeratio": "gain",
             "unlocked": false
         },
@@ -234,7 +234,7 @@ module.exports = {
             "logo": "icones/LangousteMan.png",
             "seuil": 200,
             "idcible": 4,
-            "ratio": 2,
+            "ratio": 1,
             "typeratio": "gain",
             "unlocked": false
         },
@@ -243,7 +243,7 @@ module.exports = {
             "logo": "icones/FemmeGwada.jpg",
             "seuil": 200,
             "idcible": 5,
-            "ratio": 2,
+            "ratio": 1,
             "typeratio": "gain",
             "unlocked": false
         },
@@ -252,7 +252,7 @@ module.exports = {
             "logo": "icones/fatima.jpg",
             "seuil": 200,
             "idcible": 6,
-            "ratio": 2,
+            "ratio": 1,
             "typeratio": "gain",
             "unlocked": false
         },
