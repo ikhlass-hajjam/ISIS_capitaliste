@@ -72,7 +72,7 @@ module.exports = {
             let QuantiteProduit = context.world.products
             QuantiteProduit = 0
             //Aucun manager débloqué à la réinitialisation du monde
-            managerUnlocked = false;
+            managers.unlocked = false;
 
             return context.world
         },
