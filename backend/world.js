@@ -172,19 +172,19 @@ module.exports = {
     ],
     "upgrades": [
         {
-            "name": "Bénéfices multipliés par 2",
+            "name": "Accras x2",
             "logo": "icones/cadenas.jpg",
             "seuil": 150,
-            "idcible": 5,
+            "idcible": 1,
             "ratio": 2,
             "typeratio": "gain",
             "unlocked": false
         },
         {
-            "name": "Bénéfices multipliés par 3",
+            "name": "Tajine x3",
             "logo": "icones/premierupgrade.jpg",
-            "seuil": 250,
-            "idcible": 1,
+            "seuil": 200,
+            "idcible": 2,
             "ratio": 3,
             "typeratio": "gain",
             "unlocked": false

@@ -31,6 +31,11 @@ module.exports = {
                 //gain de revenu en fonction de la quantité de produit acheté
                 produit.revenu = produit.revenu * args.quantite
                 context.world.lastupdate = Date.now()
+
+                //Acheter les upgrades si le seuil du produit a été atteint 
+                if(context.world.upgrades > context.world.seuil){
+                   acheterCashUpgrade
+                }
             } saveWorld(context)
 
             return produit
@@ -72,8 +77,8 @@ module.exports = {
             let QuantiteProduit = context.world.products
             QuantiteProduit = 0
             //Aucun manager débloqué à la réinitialisation du monde
-            managers.unlocked = false;
-
+            //produit.managerUnlocked = false;
+            //managers.unlocked = false;
             return context.world
         },
     },
@@ -90,8 +95,61 @@ function saveWorld(context) {
             }
         })
 }
-function scaleScore(parent, args, context) {
-    context.world.products.forEach(function (p) {
+function scaleScore(context) {
+    tempsEcoule = Date.now() - parseInt(context.world.lastupdate)
+
+    let nbProduction = 0
+
+    for (p in context.world.products) {
+
+        if (p.managerUnlocked) {
+            if (p.timeleft > 0) {
+                tempsEcouleProduit = temspEcoule - p.timeleft
+                if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+                else {
+
+                    nbProduction = tempsEcouleProduit / p.vitesse + 1
+                    p.timeleft = tempsEcouleProduit % p.vitesse
+                }
+            } else {
+                p.timeleft -= tempsEcoule
+                if (p.timeleft <= 0) {
+                    nbProduction = 1
+                    p.timeleft = 0
+                }
+            }
+            context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+        }
+        lastupdate = String(Date.now())
+    }
+};
+/*function scaleScore(parent, args, context) {
+    let nbProduction = 0
+    let tempsEcoule = Date.now() - context.world.lastupdate;
+    for (p in context.world.products) {
+
+        if (p.managerUnlocked) {
+            if (p.timeleft > 0) {
+                tempsEcouleProduit = temspEcoule - p.timeleft
+                if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+                else {
+
+                    nbProduction = tempsEcouleProduit / p.vitesse + 1
+                    p.timeleft = tempsEcouleProduit % p.vitesse
+                }
+            } else {
+                p.timeleft -= tempsEcoule
+                if (p.timeleft <= 0) {
+                    nbProduction = 1
+                    p.timeleft = 0
+                }
+            }
+            context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+        }
+        lastupdate = String(Date.now())
+    }
+};*/
+    /*context.world.products.forEach(function (p) {
         let nbreProduction = 0;
         let tempsEcoule = Date.now() - context.world.lastupdate;
         //Manager débloqué
@@ -120,16 +178,41 @@ function scaleScore(parent, args, context) {
     }
 
     );
-}
-function cashUpgrade(parent, args, context) {
+    let nbProduction = 0
+
+    for (p in context.world.products) {
+
+        if (p.managerUnlocked) {
+            if (p.timeleft > 0) {
+                tempsEcouleProduit = temspEcoule - p.timeleft
+                if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+                else {
+
+                    nbProduction = tempsEcouleProduit / p.vitesse + 1
+                    p.timeleft = tempsEcouleProduit % p.vitesse
+                }
+            } else {
+                p.timeleft -= tempsEcoule
+                if (p.timeleft <= 0) {
+                    nbProduction = 1
+                    p.timeleft = 0
+                }
+            }
+            context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+        }
+        lastupdate = String(Date.now())
+    }
+
+}*/
+function acheterCashUpgrade(parent, args, context) {
+    upgrade.unlocked = true;
     // Parcourt les produits pour multiplier leur revenu par le facteur de ratio de l'upgrade
     let produit = context.world.products.find(p => p.id === args.id)
     context.world.produits.forEach(function (p) {
         if (produit === undefined) {
             throw new Error(`Le produit avec l'id  ${args.id} n'existe pas`)
         }else{
-            p.revenu * args.ratio
-            ratio
+           p.revenu = p.revenu * args.ratio
         }
     });
     // Retourne la liste des produits mis à jour avec les nouveaux bénéfices
