@@ -33,8 +33,8 @@ module.exports = {
                 context.world.lastupdate = Date.now()
 
                 //Acheter les upgrades si le seuil du produit a été atteint 
-                if(context.world.upgrades > context.world.seuil){
-                   acheterCashUpgrade
+                if (context.world.upgrades > context.world.seuil) {
+                    acheterCashUpgrade
                 }
             } saveWorld(context)
 
@@ -65,20 +65,52 @@ module.exports = {
                 manager.unlocked = true;
                 produit.managerUnlocked = true;
                 context.world.lastupdate = Date.now()
-                
+
                 saveWorld(context)
-               
-            }  return manager
+
+            } return manager
         },
+
+        acheterCashUpgrade(parent, args, context) {
+            scaleScore(parent, args, context)
+            let upgrade = context.world.upgrades.find(u => u.name === args.name)
+            // Parcourt les produits pour multiplier leur revenu par le facteur de ratio de l'upgrade
+            context.world.produits.forEach(function (p) {
+                if (upgrade === undefined) {
+                    throw new Error(`L'upgrade ${args.name} n'existe pas`)
+                } else {
+                    upgrade.unlocked = true;
+                    //mise à jour du porte-monnaie
+                    context.world.money = context.world.money - upgrade.seuil
+                    let produit = context.world.products.find(p => p.id === upgrade.idcible)
+                    if (produit === undefined) {
+                        throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
+                    } else {
+                        //augmentation du revenu du produit (upgrade de type gain)
+                        if (upgrade.typeratio == "gain") {
+                            p.revenu = p.revenu * upgrade.ratio
+                        }
+                        //augmentation de la vitesse de production du produit(upgrade de type vitesse)
+                        if (upgrade.typeratio == "vitesse") {
+                            p.vitesse = p.vitesse * upgrade.ratio
+                        }
+                    }
+
+                } saveWorld(context)
+            });
+            return upgrade
+        },
+
         resetWorld(parents, args, context) {
+            scaleScore(parent, args, context)
             //réinitialisation l'argent du monde à sa valeur initiale 
             context.world.money = 1000
             //Réinitialisation de la quantité de produit à zéro
             let QuantiteProduit = context.world.products
             QuantiteProduit = 0
             //Aucun manager débloqué à la réinitialisation du monde
-            //produit.managerUnlocked = false;
-            //managers.unlocked = false;
+            produit.managerUnlocked = false;
+            managers.unlocked = false;
             return context.world
         },
     },
@@ -94,22 +126,24 @@ function saveWorld(context) {
                 throw new Error(`Erreur d'écriture du monde coté serveur`)
             }
         })
-}
-function scaleScore(context) {
-    tempsEcoule = Date.now() - parseInt(context.world.lastupdate)
-
+};
+function scaleScore(parent, args, context) {
+    let tempsEcoule = Date.now() - context.world.lastupdate
     let nbProduction = 0
 
     for (p in context.world.products) {
-
+    //production automatisée avec les managers
         if (p.managerUnlocked) {
             if (p.timeleft > 0) {
-                tempsEcouleProduit = temspEcoule - p.timeleft
-                if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+                Reste = temspEcoule - p.timeleft
+                if (Reste < 0){
+                    p.timeleft -= tempsEcoule
+                } 
                 else {
-
-                    nbProduction = tempsEcouleProduit / p.vitesse + 1
-                    p.timeleft = tempsEcouleProduit % p.vitesse
+                    //Combien de produit on été fait pendant le temps écoulé
+                    nbProduction = Reste / p.vitesse + 1
+                    //Pour savoir le temps restant pour produit une autre unité dont la production a déja été entamé
+                    p.timeleft = Reste % p.vitesse
                 }
             } else {
                 p.timeleft -= tempsEcoule
@@ -119,8 +153,9 @@ function scaleScore(context) {
                 }
             }
             context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+            context.world.money += nbreProduction * p.revenu * p.quantite
         }
-        lastupdate = String(Date.now())
+        context.world.lastupdate = String(Date.now())
     }
 };
 /*function scaleScore(parent, args, context) {
@@ -146,76 +181,62 @@ function scaleScore(context) {
             }
             context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
         }
-        lastupdate = String(Date.now())
+        context.world.lastupdate = String(Date.now())
     }
 };*/
-    /*context.world.products.forEach(function (p) {
-        let nbreProduction = 0;
-        let tempsEcoule = Date.now() - context.world.lastupdate;
-        //Manager débloqué
-        if (p.managerUnlocked) {
-            //Combien de produit on été fait pendant le temps écoulé
-            nbreProduction = tempsEcoule / p.vitesse +1
-            //Pour savoir le temps restant pour produit une autre unité
-            Reste = tempsEcoule % p.vitesse
+/*function scaleScore(parent, args, context) {
+    context.world.products.forEach(function (p) {
+    let nbreProduction = 0;
+    let tempsEcoule = Date.now() - context.world.lastupdate;
+    //Manager débloqué
+    if (p.managerUnlocked) {
+        //Combien de produit on été fait pendant le temps écoulé
+        nbreProduction = tempsEcoule / p.vitesse +1
+        //Pour savoir le temps restant pour produit une autre unité
+        Reste = tempsEcoule % p.vitesse
 
-            if (p.timeLeft - tempsEcoule > 0) {
-                nouveauTempsRestant = p.timeLeft + Reste
-                p.quantite += nbreProduction
-            }
+        if (p.timeLeft - tempsEcoule > 0) {
+            nouveauTempsRestant = p.timeLeft + Reste
+            p.quantite += nbreProduction
+        }
 
+    } else {
+        //production d'un produit sans manager (pas automatisé) mais qu'on lance la production
+        if (p.timeLeft > 0) {
+            p.timeLeft -= tempsEcoule
+            p.quantite = p.quantite + 1
         } else {
-            //production d'un produit sans manager (pas automatisé) mais qu'on lance la production
-            if (p.timeLeft > 0) {
-                p.timeLeft -= tempsEcoule
-                p.quantite = p.quantite + 1
-            } else {
-                p.timeLeft = 0;
-            }
-
+            p.timeLeft = 0;
         }
-        context.world.money += nbreProduction * p.revenu * p.quantite
+
     }
+    context.world.money += nbreProduction * p.revenu * p.quantite
+}
 
-    );
-    let nbProduction = 0
+);
+let nbProduction = 0
 
-    for (p in context.world.products) {
+for (p in context.world.products) {
 
-        if (p.managerUnlocked) {
-            if (p.timeleft > 0) {
-                tempsEcouleProduit = temspEcoule - p.timeleft
-                if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
-                else {
+    if (p.managerUnlocked) {
+        if (p.timeleft > 0) {
+            tempsEcouleProduit = temspEcoule - p.timeleft
+            if (tempsEcouleProduit < 0) p.timeleft -= tempsEcoule
+            else {
 
-                    nbProduction = tempsEcouleProduit / p.vitesse + 1
-                    p.timeleft = tempsEcouleProduit % p.vitesse
-                }
-            } else {
-                p.timeleft -= tempsEcoule
-                if (p.timeleft <= 0) {
-                    nbProduction = 1
-                    p.timeleft = 0
-                }
+                nbProduction = tempsEcouleProduit / p.vitesse + 1
+                p.timeleft = tempsEcouleProduit % p.vitesse
             }
-            context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
+        } else {
+            p.timeleft -= tempsEcoule
+            if (p.timeleft <= 0) {
+                nbProduction = 1
+                p.timeleft = 0
+            }
         }
-        lastupdate = String(Date.now())
+        context.world.score = context.world.score + nbProduction * p.revenu * p.quantite
     }
+    lastupdate = String(Date.now())
+}
 
 }*/
-function acheterCashUpgrade(parent, args, context) {
-    upgrade.unlocked = true;
-    // Parcourt les produits pour multiplier leur revenu par le facteur de ratio de l'upgrade
-    let produit = context.world.products.find(p => p.id === args.id)
-    context.world.produits.forEach(function (p) {
-        if (produit === undefined) {
-            throw new Error(`Le produit avec l'id  ${args.id} n'existe pas`)
-        }else{
-           p.revenu = p.revenu * args.ratio
-        }
-    });
-    // Retourne la liste des produits mis à jour avec les nouveaux bénéfices
-    return produit
-  }
-  
