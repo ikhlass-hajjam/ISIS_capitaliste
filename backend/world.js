@@ -167,12 +167,12 @@ module.exports = {
             "ratio": 2,
             "typeratio": "gain",
             "unlocked": false
-        },
+        }
 
     ],
     "upgrades": [
         {
-            "name": "Accras ",
+            "name": "Accras",
             "logo": "icones/accras.jpg",
             "seuil": 150,
             "idcible": 1,

@@ -95,7 +95,6 @@ module.exports = {
                             p.vitesse = p.vitesse * upgrade.ratio
                         }
                     }
-
                 } saveWorld(context)
             });
             return upgrade
