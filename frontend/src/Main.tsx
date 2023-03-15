@@ -3,10 +3,10 @@ import ProductComponent from "./Product"
 import { World } from "./world"
 import { transform } from "./utils";
 import { Product } from './world';
-//import AngeComponent from "./ange"
-//import UpgradeComponent from "./upgrade"
 import { Palier } from './world';
 import ManagerComponent from "./Managers";
+import UpgradeComponent from "./Upgrades";
+import AngeComponent from "./Ange";
 
 type MainProps = {
   loadworld: World
@@ -50,9 +50,10 @@ export default function Main({ loadworld, username }: MainProps) {
     }
   }
 
+
+  //fonction acheter les upgrades
   function buyUpgrade(upgrade: Palier): void {
     upgrade.unlocked = true;
-    
     let newMoney = money - upgrade.seuil
     setMoney(newMoney)
 
@@ -64,9 +65,12 @@ export default function Main({ loadworld, username }: MainProps) {
     } else {
         if (upgrade.typeratio == "vitesse") {
             produit.vitesse = Math.round(produit.vitesse / upgrade.ratio)
+            console.log("vitesse plus vite")
         }
         if (upgrade.typeratio == "gain") {
             produit.revenu = produit.revenu * upgrade.ratio
+            console.log("argent++")
+
         }
       }  
   }
@@ -110,6 +114,8 @@ export default function Main({ loadworld, username }: MainProps) {
         let moneyWorld = money - ((Math.pow(p.croissance, 1) - 1) / (p.croissance - 1) * p.cout)
         p.cout = p.cout * Math.pow(p.croissance, 1)
         setMoney(moneyWorld)
+
+        console.log("testtttttt");
       }
       if(qtmulti==="x10"){
         p.quantite += 10
@@ -126,6 +132,8 @@ export default function Main({ loadworld, username }: MainProps) {
     }
   }
 
+
+  
   function handleChange() {
     if(qtmulti==="x1"){setQtmulti("x10");}
     if(qtmulti==="x10"){setQtmulti("x100");}
@@ -137,28 +145,31 @@ export default function Main({ loadworld, username }: MainProps) {
     <div className="App">
 
       <div className="header">
-        <div> <img className="square" src={"http://localhost:4000/" + world.logo} /> </div>
-        <span> {world.name} </span>
+        <div> <img className="square" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + world.logo} /> </div>
+        <span className="worldName"> {world.name} </span>
         <div>
-          <div> MarloupeMoney </div>
+          <div className="textML"> Your MarloupeMoney </div>
           <span dangerouslySetInnerHTML={{ __html: transform(money)}}/>
-          <div>ange : </div>
+          <div className="textAngels">angels : </div>
           <span dangerouslySetInnerHTML={{ __html: transform(ange)}}/>
-          <div>score : </div>
+          <div className="textScore">score : </div>
           <span dangerouslySetInnerHTML={{ __html: transform(score)}}/>
         </div>
-        <div> <div>multiplicateur : {qtmulti}</div>
-        <button onClick={() => handleChange()}>Clique pour changer la quantité</button>
+        <div> 
+        <button className="qultimultiButton"onClick={() => handleChange()}>buy: {qtmulti} </button>
         </div>
 
       </div>
 
       <div className="main">
-        <div> liste des boutons de menu 
-        <button onClick={() => handleManager()} >Engager un manager</button>
+        <div className="titreMenu"> liste des boutons de menu 
+        <button className="bouttonManagers" onClick={() => handleManager()} >Managers</button>
         {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money}/>}
-        <button onClick={() => handleUpgrade()} >Afficher les CashUpgrades</button>
-        
+        <button className="bouttonUpgrades" onClick={() => handleUpgrade()} > CashUpgrades</button>
+        {showUpgrades && <UpgradeComponent loadworld={world} buyUpgrade={buyUpgrade} handleUpgrade={handleUpgrade} showUpgrades={showUpgrades} money={money}/>}
+        <button className="bouttonAnges" onClick={() => handleAnge()} >show Angels</button>
+        {showAnges && <AngeComponent loadworld={world} buyAnge={buyAnge} handleAnge={handleAnge} showAnges={showAnges} ange={ange} angelupgrades={new Palier}/>}
+
         <div>
           {
             world.allunlocks.filter((allunlock: Palier) => allunlock.unlocked).map(
@@ -167,7 +178,7 @@ export default function Main({ loadworld, username }: MainProps) {
                       <div key={allunlock.seuil} className="managergrid">
                           <div>
                               <div className="logo">
-                              <img className="round" src={"http://localhost:4000/" + allunlock.logo}/>
+                                <img className="round" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + allunlock.logo}/>
                               </div>
                           </div>
                           <div className="infosmanager">
@@ -200,6 +211,23 @@ export default function Main({ loadworld, username }: MainProps) {
     
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -23,7 +23,7 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                     <div className="modal">
                         <div>
                             <h1 className="title">Managers make you feel better !
-                            <button onClick={() => handleManager()}>X</button>
+                            <button className="close" onClick={() => handleManager()}>Close</button>
                             </h1>
                         </div>
                         <div>
@@ -35,7 +35,7 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                             <div key={manager.idcible} className="managergrid">
                                                 <div>
                                                     <div className="logo">
-                                                    <img className="round" src={"http://localhost:4000/" + manager.logo}/>
+                                                    <img className="round" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + manager.logo}/>
                                                     </div>
                                                 </div>
                                                 <div className="infosmanager">
@@ -46,7 +46,7 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                                     <div className="managercost">{manager.seuil}</div>
                                                 </div>
                                                 <div onClick={() => hireManager(manager)}>
-                                                    <button disabled={money < manager.seuil}>Hire !</button>
+                                                    <button className= "hireButton"disabled={money < manager.seuil}>Hire !</button>
                                                 </div>
                                             </div>
                                         );

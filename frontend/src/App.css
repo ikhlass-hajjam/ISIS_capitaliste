@@ -40,13 +40,13 @@
 
 .header {
   display: grid;
-  grid-template-columns: 25% 25% 30% 20%;
+  grid-template-columns: 20% 50% 15% 10%;
   }
  .main {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 30% 70%;
   }
  .product {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   }

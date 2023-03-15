@@ -16,20 +16,18 @@ type ProductProps = {
 export default function ProductComponent({ product, onProductionDone, onProductBuy, money, qtmulti }: ProductProps) {
     //fait des hooks de lastupdate et timeleft
     const lastupdate = useRef(Date.now()); //à mémoriser la date de dernière mise à jour du produit
- const [showProgressBar, setShowProgressBar] = useState(false);
+    const [showProgressBar, setShowProgressBar] = useState(false);
     let [timeleft, setTimeleft] = useState(product.timeleft);
 
     function startFabrication() {
-
-
         setTimeleft(product.vitesse);
        // lastupdate.current = Date.now();
         setShowProgressBar(true);
         console.log("test : sa part ");
-        onProductBuy(product);
+       // onProductBuy(product);
     }
 
-    //a ajouter Defne 
+    //fonction de la suite géométrique
     function calcMaxCanBuy() {
         const currentCost = product.cout * (1 + product.croissance) ** product.quantite; //le coût actuel de l'achat d'une unité supplémentair
         //calcule le nombre maximal d'unités qu'un utilisateur peut acheter 
@@ -39,7 +37,7 @@ export default function ProductComponent({ product, onProductionDone, onProductB
 
 
 
-    function scalcScore() {
+    function scalcScore1() {
         let nbProduction = 0;
         const now = Date.now();
         const tempsEcoule = now - lastupdate.current; // temps écoulé depuis la dernière mise à jour du score
@@ -63,6 +61,7 @@ export default function ProductComponent({ product, onProductionDone, onProductB
                 
             } else {
                 
+                
                 timeleft -= tempsEcoule
                 if (timeleft <= 0) {
                     nbProduction = 1
@@ -72,22 +71,32 @@ export default function ProductComponent({ product, onProductionDone, onProductB
 
             }
         } else {
-            timeleft -= tempsEcoule
+            /*timeleft -= tempsEcoule
                 if (timeleft <= 0 && timeleft < tempsEcoule) {
                     nbProduction = 1
                     setTimeleft(0)
                     //setShowProgressBar(false);
-                    console.log("Def passe par la ");
+                    console.log("test passe par la ");
                 }
                 console.log(timeleft);
 
             if (timeleft == 0) {
-                console.log("Def2 passe par la ")
+                console.log("test2 passe par la ")
                 setShowProgressBar(false)
                 setTimeleft(0)
                 
-            }
-            
+            }*/
+
+
+            // modification Singer
+
+            timeleft -= tempsEcoule
+                if (timeleft <= 0) {
+                    nbProduction = 1
+                    setTimeleft(0)
+                    //onProductionDone(product, nbProduction) 
+                    console.log("test  blabliblou ");
+                }
         }
 
         if (nbProduction > 0) {
@@ -98,6 +107,44 @@ export default function ProductComponent({ product, onProductionDone, onProductB
    
     }
 
+
+
+    function scalcScore() {
+        let nbProduction = 0;
+        let tempsEcoule = Date.now() - lastupdate.current
+        lastupdate.current = Date.now(); // on remet à jour lastupdate
+
+        if (product.managerUnlocked) {
+            setTimeleft(product.vitesse)
+            if (timeleft === 0) {
+                return; // produit pas en cours de production, on ne fait rien
+            }
+            if (tempsEcoule < timeleft) {
+                let newTimeLeft = timeleft - tempsEcoule
+                setTimeleft(newTimeLeft)
+            } else {
+                setTimeleft(0)
+                nbProduction=1
+                onProductionDone(product, nbProduction) 
+            }
+
+        }else{
+
+            if (timeleft === 0) {
+                return; // produit pas en cours de production, on ne fait rien
+            }
+
+            if(tempsEcoule < timeleft){
+                let newTimeLeft = timeleft - tempsEcoule
+                setTimeleft(newTimeLeft)
+            }else{
+                setTimeleft(0)
+                nbProduction=1
+                onProductionDone(product, nbProduction)
+            }
+        }
+    }
+    
     useInterval(() => scalcScore(), 100);
 
 
@@ -105,13 +152,14 @@ export default function ProductComponent({ product, onProductionDone, onProductB
         <div className="produit" >
             <div className="lesdeux">
                 <div className="lepremier">
-                    <img className="round" onClick={startFabrication} src={"http://localhost:4000/" + product.logo} />
+                    <img onClick={startFabrication} src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + product.logo} />
                 </div>
                 <div className="lesecond">
-                    <span> {product.name} </span>
-                    <span> {product.quantite} </span>
-                    <button onClick={() => startFabrication} disabled={money < product.cout}>Achetez moi</button>
-                    <div> Temps restant: {product.timeleft} </div>
+                    <span className="productName"> {product.name}:</span>
+                    <span className="producQuantity">{product.quantite} </span>
+                    <button className="achetezmoi" onClick={() =>onProductBuy(product)} disabled={money < product.cout}>Buy me</button>
+                    <div className="tempsRestant"> Temps restant: {product.vitesse} </div>
+                    <div className="price"> price: {product.cout} $</div>
                 </div>
             </div>
 
@@ -121,7 +169,7 @@ export default function ProductComponent({ product, onProductionDone, onProductB
             vitesse={product.vitesse}
             initialvalue={product.vitesse - timeleft}
             run={timeleft > 0 || product.managerUnlocked } 
-            frontcolor="#ff8800" 
+            frontcolor="#8B4513" // marron
             backcolor="#ffffff"
             auto={product.managerUnlocked}
             orientation={Orientation.horizontal} />)}

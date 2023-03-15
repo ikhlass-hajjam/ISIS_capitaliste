@@ -1,9 +1,3 @@
-.round {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%
-}
-
 .square {
   width: 100px;
   height: 100px
@@ -12,11 +6,11 @@
 .lesdeux {
   position: relative;
 }
+
 .lesecond {
 position: absolute;
-bottom: -10px;
+bottom: -100px;
 }
-
 
 
 .modal {
@@ -29,36 +23,114 @@ bottom: -10px;
   border: solid;
   top:10%; /* a 10% du haut */
   left:20%; /* a 20% de la gauche */
+  background-image: url('manager.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; /* ajuste la taille de l'image */
+
 }
 
 
+.close{
+  width: 80px;
+  height: 30px;
+  border: 3px solid black;
+  position: relative;
+  background-color: #D2B48C;
+  left:60px;
+}
+
+.MarloupeApp{
+  background-image:url('background2.jpg'); 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+img {
+  width : 120px;
+  height : 120px;
+  border-radius: 100%
+}
+
+.produit {
+  background-color: rgba(255, 255, 255, 0.4); /* couleur de fond semi-transparente */
+  padding: 30px 50px 120px 50px; /* ajout d'un peu d'espace intérieur pour améliorer la lisibilité */
+  margin-bottom: 30px; /* espacement entre les produits */
+}
+
+.worldName{
+  font-family: 'Times New Roman', serif; /* police d'écriture pour un thème orientale égypt. */
+  font-size: 55px; /* taille de police de caractères pour le nom du produit */
+  font-style: italic;
+}
+
+.productName,
+.titreMenu,
+.textML,
+.textAngels,
+.textScore {
+  font-weight: bold; 
+  font-family: 'Times New Roman', serif; /* police d'écriture pour un thème orientale égypt. */
+  font-size: 20px; /* taille de police de caractères pour le nom du produit */
+  font-style: italic;
+}
+
+.price,
+.tempsRestant{
+  font-style: italic;
+  font-family: 'Times New Roman', serif;
+}
+
+.titreMenu{
+  display: flex;
+  flex-direction: column;
+  align-items:  center; /* Pour centrer horizontalement les boutons */
+  
+  
+}
+
+.titreMenu button {
+  margin-bottom: 10px; /* Pour ajouter un espace entre les boutons */
+}
+
+.producQuantity {
+  font-weight: bold; /* texte en gras */
+  font-size: 16px; /* taille de police de caractères pour la quantité de produit */
+}
+
+/* Personnalisation du bouton */
+.achetezmoi,
+.bouttonManagers,
+.bouttonUpgrades,
+.bouttonAnges,
+.qultimultiButton,
+.BuyUpgrade,
+.hireButton {
+  background-color: #D2B48C; /* couleur de fond marron clair */
+  color: white; /* texte en blanc */
+  font-size: 16px; /* taille de police de caractères */
+  font-weight: bold; /* texte en gras */
+  padding: 5px 15px; /* espace intérieur pour le bouton */
+  margin-top: 10px; /* espacement entre le bouton et les éléments précédents */
+}
+
+.barstyle {
+  width: 200px; /* ajustez la valeur en fonction de la largeur souhaitée */
+  border-radius: 20px; /* ajustez la valeur en fonction du rayon souhaité */
+  height: 20px; /* hauteur de la barre de progression */
+  position: relative;
+  border: solid;
+  bottom: -110px;
+  left: 10px;
+}
 
 
-
-
-
-
-
-/*img {
-    width : 170px;
-    height : 170px;
-    border-radius: 50%
-    }
-
-
-.round {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%
-   }
-   
-   
-
-
-*/
-
-
-
- 
+.square{
+  width : 200px;
+  height : 150px;
+  border-radius: 100%;
+  margin-bottom: 20px;
+  margin-left: 90px;
+  margin-top: 10px;
+}
 
    
