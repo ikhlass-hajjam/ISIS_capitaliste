@@ -172,21 +172,56 @@ module.exports = {
     ],
     "upgrades": [
         {
-            "name": "Bénéfices multipliés par 2",
-            "logo": "icones/premierupgrade.jpg",
+            "name": "Accras ",
+            "logo": "icones/accras.jpg",
             "seuil": 150,
-            "idcible": 5,
+            "idcible": 1,
             "ratio": 2,
             "typeratio": "gain",
             "unlocked": false
         },
         {
-            "name": "Bénéfices multipliés par 3",
-            "logo": "icones/premierupgrade.jpg",
-            "seuil": 250,
-            "idcible": 1,
+            "name": "Tajine",
+            "logo": "icones/tajine.jpg",
+            "seuil": 200,
+            "idcible": 2,
             "ratio": 3,
             "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Harira",
+            "logo": "icones/harira.jpg",
+            "seuil": 1000,
+            "idcible": 3,
+            "ratio": 3,
+            "typeratio": "gain",
+            "unlocked": false
+        },
+        {
+            "name": "Langouste",
+            "logo": "icones/langouste.jpg",
+            "seuil": 1100,
+            "idcible": 4,
+            "ratio": 3,
+            "typeratio": "vitesse",
+            "unlocked": false
+        },{
+            "name": "Chichi",
+            "logo": "icones/chichi.jpg",
+            "seuil": 1800,
+            "idcible": 5,
+            "ratio": 2,
+            "typeratio": "vitesse",
+            "unlocked": false
+        },
+        {
+            "name": "Corne de gazelle",
+            "logo": "icones/cornegazelle.jpg",
+            "seuil": 200,
+            "idcible": 6,
+            "ratio": 3,
+            "typeratio": "vitesse",
             "unlocked": false
         },
     ],
@@ -232,7 +267,7 @@ module.exports = {
         {
             "name": "Ludo",
             "logo": "icones/LangousteMan.png",
-            "seuil": 200,
+            "seuil": 400,
             "idcible": 4,
             "ratio": 1,
             "typeratio": "gain",
@@ -241,7 +276,7 @@ module.exports = {
         {
             "name": "Mélissa",
             "logo": "icones/FemmeGwada.jpg",
-            "seuil": 200,
+            "seuil": 900,
             "idcible": 5,
             "ratio": 1,
             "typeratio": "gain",
@@ -250,7 +285,7 @@ module.exports = {
         {
             "name": "Fatima",
             "logo": "icones/fatima.jpg",
-            "seuil": 200,
+            "seuil": 2500,
             "idcible": 6,
             "ratio": 1,
             "typeratio": "gain",
