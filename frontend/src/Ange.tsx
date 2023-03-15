@@ -40,7 +40,7 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                                             <div key={ange.idcible} className="managergrid">
                                                 <div>
                                                     <div className="logo">
-                                                    <img className="round" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + ange.logo}/>
+                                                    <img className="round" src={"http://localhost:4000/" + ange.logo}/>
                                                     </div>
                                                 </div>
                                                 <div className="infosmanager">

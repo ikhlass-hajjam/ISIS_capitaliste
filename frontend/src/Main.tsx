@@ -145,7 +145,7 @@ export default function Main({ loadworld, username }: MainProps) {
     <div className="App">
 
       <div className="header">
-        <div> <img className="square" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + world.logo} /> </div>
+        <div> <img className="square" src={"http://localhost:4000/" + world.logo} /> </div>
         <span className="worldName"> {world.name} </span>
         <div>
           <div className="textML"> Your MarloupeMoney </div>
@@ -178,7 +178,7 @@ export default function Main({ loadworld, username }: MainProps) {
                       <div key={allunlock.seuil} className="managergrid">
                           <div>
                               <div className="logo">
-                                <img className="round" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + allunlock.logo}/>
+                                <img className="round" src={"http://localhost:4000/" + allunlock.logo}/>
                               </div>
                           </div>
                           <div className="infosmanager">

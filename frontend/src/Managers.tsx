@@ -35,7 +35,7 @@ export default function ManagerComponent({loadworld, hireManager, handleManager,
                                             <div key={manager.idcible} className="managergrid">
                                                 <div>
                                                     <div className="logo">
-                                                    <img className="round" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + manager.logo}/>
+                                                    <img className="round" src={"http://localhost:4000/" + manager.logo}/>
                                                     </div>
                                                 </div>
                                                 <div className="infosmanager">

@@ -40,7 +40,7 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                                             <div key={upgrade.name} className="managerAgrid">
                                                 <div>
                                                     <div className="logo">
-                                                    <img className="round" src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + upgrade.logo}/>
+                                                    <img className="round" src={"http://localhost:4000/" + upgrade.logo}/>
                                                     </div>
                                                 </div>
                                                 <div className="infosmanager">

@@ -152,7 +152,7 @@ export default function ProductComponent({ product, onProductionDone, onProductB
         <div className="produit" >
             <div className="lesdeux">
                 <div className="lepremier">
-                    <img onClick={startFabrication} src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + product.logo} />
+                    <img onClick={startFabrication} src={"http://localhost:4000/" + product.logo} />
                 </div>
                 <div className="lesecond">
                     <span className="productName"> {product.name}:</span>
