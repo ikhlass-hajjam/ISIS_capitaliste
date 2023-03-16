@@ -53,6 +53,7 @@ module.exports = {
                 produit.timeLeft = produit.vitesse
                 context.world.lastupdate = Date.now()
             } saveWorld(context)
+            return produit
         },
 
         engagerManager(parent, args, context) {
@@ -128,7 +129,7 @@ module.exports = {
         },
 
 
-        resetWorld(parents, args, context) {
+        resetWorld(parent, args, context) {
             scaleScore(parent, args, context)
             
             if ((Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10))) - context.world.totalangels)<0){
@@ -141,12 +142,16 @@ module.exports = {
             let world = require("./world")
             context.world = world
             //Réinitialisation de la quantité de produit à zéro
+            let produit = context.world.products
             let QuantiteProduit = context.world.products
             QuantiteProduit = 0
             //Aucun manager débloqué à la réinitialisation du monde
+            let managers = context.world.managers
             produit.managerUnlocked = false;
             managers.unlocked = false;
             //garder les anges qui ont été gagnés
+            let totalangels = context.world.totalangels
+            let activeangels = context.world.activeangels
             context.world.totalangels = totalangels
             context.world.activeangels = activeangels
         
