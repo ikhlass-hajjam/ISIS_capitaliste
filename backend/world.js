@@ -229,10 +229,10 @@ module.exports = {
         {
             "name": "Angel Sacrifice",
             "logo": "icones/angel.png",
-            "seuil": 10,
+            "seuil": 100,
             "idcible": 0,
             "ratio": 3,
-            "typeratio": "gain",
+            "typeratio": "ange",
             "unlocked": false
         },
     ],

@@ -1,3 +1,5 @@
+const { money } = require("./world");
+
 const fs = require("fs").promises
 module.exports = {
     Query: {
@@ -75,41 +77,80 @@ module.exports = {
             scaleScore(parent, args, context)
             let upgrade = context.world.upgrades.find(u => u.name === args.name)
             // Parcourt les produits pour multiplier leur revenu par le facteur de ratio de l'upgrade
-            context.world.produits.forEach(function (p) {
-                if (upgrade === undefined) {
-                    throw new Error(`L'upgrade ${args.name} n'existe pas`)
+
+            if (upgrade === undefined) {
+                throw new Error(`L'upgrade ${args.name} n'existe pas`)
+            } else {
+                upgrade.unlocked = true;
+                //mise à jour du porte-monnaie
+                context.world.money = context.world.money - upgrade.seuil
+                let produit = context.world.products.find(p => p.id === upgrade.idcible)
+                if (produit === undefined) {
+                    throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
                 } else {
-                    upgrade.unlocked = true;
-                    //mise à jour du porte-monnaie
-                    context.world.money = context.world.money - upgrade.seuil
-                    let produit = context.world.products.find(p => p.id === upgrade.idcible)
-                    if (produit === undefined) {
-                        throw new Error(`Le produit avec l'id ${args.id} n'existe pas`)
-                    } else {
-                        //augmentation du revenu du produit (upgrade de type gain)
-                        if (upgrade.typeratio == "gain") {
-                            p.revenu = p.revenu * upgrade.ratio
-                        }
-                        //augmentation de la vitesse de production du produit(upgrade de type vitesse)
-                        if (upgrade.typeratio == "vitesse") {
-                            p.vitesse = p.vitesse * upgrade.ratio
-                        }
+                    //augmentation du revenu du produit (upgrade de type gain)
+                    if (upgrade.typeratio == "gain") {
+                        p.revenu = p.revenu * upgrade.ratio
                     }
-                } saveWorld(context)
-            });
+                    //augmentation de la vitesse de production du produit(upgrade de type vitesse)
+                    if (upgrade.typeratio == "vitesse") {
+                        p.vitesse = p.vitesse * upgrade.ratio
+                    }
+                }
+            } saveWorld(context)
             return upgrade
         },
 
+        acheterAngelUpgrade(parent, args, context) {
+            scaleScore(parent, args, context)
+            let angelUpgrade = context.angelupgrades.find(angeU => angeU.name === args.name);
+
+            if (angelUpgrade === undefined) {
+                throw new Error(`L'amélioration d'ange avec le nom ${args.name} n'existe pas.`);
+            } else {
+                context.world.money -= angelUpgrade.seuil;
+                angelUpgrade.unlocked = true;
+            }
+
+            if (angelUpgrade.typeratio === "ange") {
+                context.world.angelbonus = Math.round(produit.vitesse / upgrade.ratio);
+            }
+            if (angelUpgrade.typeratio === "gain") {
+                p.revenu *= angelUpgrade.ratio;
+            }
+
+            if (angelUpgrade.typeratio === "vitesse") {
+                p.revenu = Math.round(p.vitesse / angelUpgrade.ratio);
+            }
+            context.world.totalangels -= angelUpgrade.seuil
+            saveWorld(context)
+            return angelUpgrade;
+        },
+
+
         resetWorld(parents, args, context) {
             scaleScore(parent, args, context)
+            
+            if ((Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10))) - context.world.totalangels)<0){
+                context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10))) - context.world.totalangels
+                context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10)))
+            }
             //réinitialisation l'argent du monde à sa valeur initiale 
-            context.world.money = 1000
+            context.world.money = money
+            //Réinitialisation pour les différents utlisateurs
+            let world = require("./world")
+            context.world = world
             //Réinitialisation de la quantité de produit à zéro
             let QuantiteProduit = context.world.products
             QuantiteProduit = 0
             //Aucun manager débloqué à la réinitialisation du monde
             produit.managerUnlocked = false;
             managers.unlocked = false;
+            //garder les anges qui ont été gagnés
+            context.world.totalangels = totalangels
+            context.world.activeangels = activeangels
+        
+            saveWorld(context)
             return context.world
         },
     },
@@ -131,13 +172,13 @@ function scaleScore(parent, args, context) {
     let nbProduction = 0
 
     for (p in context.world.products) {
-    //production automatisée avec les managers
+        //production automatisée avec les managers
         if (p.managerUnlocked) {
             if (p.timeleft > 0) {
                 Reste = temspEcoule - p.timeleft
-                if (Reste < 0){
+                if (Reste < 0) {
                     p.timeleft -= tempsEcoule
-                } 
+                }
                 else {
                     //Combien de produit on été fait pendant le temps écoulé
                     nbProduction = Reste / p.vitesse + 1
