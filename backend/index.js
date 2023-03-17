@@ -1,5 +1,6 @@
 const fs = require("fs").promises
 const express = require('express');
+const cors = require('cors');
 let world = require("./world");
 
 
