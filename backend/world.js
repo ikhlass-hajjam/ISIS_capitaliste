@@ -229,9 +229,27 @@ module.exports = {
         {
             "name": "Angel",
             "logo": "icones/angel.jpg",
-            "seuil": 100,
+            "seuil": 10,
             "idcible": 0,
             "ratio": 3,
+            "typeratio": "ange",
+            "unlocked": false
+        },
+        {
+            "name": "Angelito",
+            "logo": "icones/angel.jpg",
+            "seuil": 15,
+            "idcible": 0,
+            "ratio": 4,
+            "typeratio": "ange",
+            "unlocked": false
+        },
+        {
+            "name": "Angelita",
+            "logo": "icones/angel.jpg",
+            "seuil": 100,
+            "idcible": 0,
+            "ratio": 6,
             "typeratio": "ange",
             "unlocked": false
         },
