@@ -1,7 +1,7 @@
 module.exports = {
     "name": "Nice Marloupe",
     "logo": "icones/backgroudwelcome.jpg",
-    "money": 1000,
+    "money": 0,
     "score": 0,
     "totalangels": 0,
     "activeangels": 0,
@@ -227,7 +227,7 @@ module.exports = {
     ],
     "angelupgrades": [
         {
-            "name": "Angel Sacrifice",
+            "name": "Angel",
             "logo": "icones/angel.png",
             "seuil": 100,
             "idcible": 0,
