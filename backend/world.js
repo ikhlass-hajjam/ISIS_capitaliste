@@ -228,7 +228,7 @@ module.exports = {
     "angelupgrades": [
         {
             "name": "Angel",
-            "logo": "icones/angel.png",
+            "logo": "icones/angel.jpg",
             "seuil": 100,
             "idcible": 0,
             "ratio": 3,

@@ -104,7 +104,7 @@ module.exports = {
 
         acheterAngelUpgrade(parent, args, context) {
             scaleScore(parent, args, context)
-            let angelUpgrade = context.angelupgrades.find(angeU => angeU.name === args.name);
+            let angelUpgrade = context.angelupgrades.find(ange => ange.name === args.name)
 
             if (angelUpgrade === undefined) {
                 throw new Error(`L'amélioration d'ange avec le nom ${args.name} n'existe pas.`);
@@ -125,7 +125,7 @@ module.exports = {
             }
             context.world.totalangels -= angelUpgrade.seuil
             saveWorld(context)
-            return angelUpgrade;
+            return angelUpgrade
         },
 
 
