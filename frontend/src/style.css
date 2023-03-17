@@ -20,7 +20,8 @@ bottom: -100px;
   height: 500px; /* hauteur */
   overflow: auto; /* barre de scroll si besoin */
   background-color: white; /* opaque */
-  border: solid;
+  border: 2px solid;
+  border-color: black;
   top:10%; /* a 10% du haut */
   left:20%; /* a 20% de la gauche */
   background-image: url('manager.jpg');
@@ -28,6 +29,8 @@ bottom: -100px;
   background-size: cover; /* ajuste la taille de l'image */
 
 }
+
+
 
 
 .close{
@@ -40,8 +43,7 @@ bottom: -100px;
 }
 
 .MarloupeApp{
-  background-image:url('background2.jpg'); 
-  background-repeat: no-repeat;
+  background-image:url('https://t1.pixers.pics/img-1fb6f67c/wall-murals-chinese-oriental-pattern-background.jpg?H4sIAAAAAAAAA3WOXW7EIAyEr0MkNjYJwYED7OseIWKBbNPNDwLarXr6ElV9rPxgz0jjb-Bjz3YO4MJeQoJt8X4NMC9rVdmkkJfvwJATysZUd2WI2JjjMySXjsgGxS_jyHWvOOmuMS9bc5tNT_ZWSswGIPdtXL7qs7pcBrdl6FAQoIJBD9LKbh6d1zQVG0Oxl-fL-mRLG_cHx3OavxYSkcuTXtKysVrnqKTC3uOjgX9ovzfUFFxvoAiEAKVhlKc1XW-KhFB6lFMQitydvLa90t7fO6eJrHdIVPv1XVspP0QNkXsrAQAA');
   background-size: cover;
 }
 
@@ -54,9 +56,15 @@ img {
 .produit {
   background-color: rgba(255, 255, 255, 0.4); /* couleur de fond semi-transparente */
   padding: 30px 50px 120px 50px; /* ajout d'un peu d'espace intérieur pour améliorer la lisibilité */
-  margin-bottom: 30px; /* espacement entre les produits */
-}
+  /*margin-bottom: 30px;  espacement entre les produits */
+  border: 1.5px solid black; /* ajout d'un contour noir */
+  margin-left: 30px;
+  margin-bottom: 30px;
 
+}
+.mangergrid{
+  z-index:1000;
+}
 .worldName{
   font-family: 'Times New Roman', serif; /* police d'écriture pour un thème orientale égypt. */
   font-size: 55px; /* taille de police de caractères pour le nom du produit */
@@ -64,7 +72,6 @@ img {
 }
 
 .productName,
-.titreMenu,
 .textML,
 .textAngels,
 .textScore {
@@ -72,6 +79,20 @@ img {
   font-family: 'Times New Roman', serif; /* police d'écriture pour un thème orientale égypt. */
   font-size: 20px; /* taille de police de caractères pour le nom du produit */
   font-style: italic;
+}
+
+.titreMenu{
+  font-weight: 950; 
+  font-family: 'Times New Roman', serif; /* police d'écriture pour un thème orientale égypt. */
+  font-size: 25px; /* taille de police de caractères pour le nom du produit */
+  font-style: italic;
+  
+  background-image: url('bandeR2.png');
+  background-repeat: no-repeat;
+ /* Edge offsets values */
+  background-position: 24px 0;
+  background-size: 269px;
+  padding: 20px; 
 }
 
 .price,
@@ -102,7 +123,6 @@ img {
 .bouttonManagers,
 .bouttonUpgrades,
 .bouttonAnges,
-.qultimultiButton,
 .BuyUpgrade,
 .hireButton {
   background-color: #D2B48C; /* couleur de fond marron clair */
@@ -110,8 +130,96 @@ img {
   font-size: 16px; /* taille de police de caractères */
   font-weight: bold; /* texte en gras */
   padding: 5px 15px; /* espace intérieur pour le bouton */
-  margin-top: 10px; /* espacement entre le bouton et les éléments précédents */
+  margin-top: 5px; /* espacement entre le bouton et les éléments précédents */
+  border-radius: 10px;
 }
+
+.scoreMl{
+  background-image: url('roll2.png');
+  background-size: 184px;
+  background-repeat: no-repeat;
+  background-position:  4% 10%;
+  padding: 15px;
+}
+
+
+.worldName{
+  margin-left:240px;
+  background-image: url('bandeR3.png');
+  background-repeat: no-repeat;
+ /* Edge offsets values */
+  background-position:  48% -7%;
+  background-size: 550px;
+  padding: 30px;   
+}
+
+.qultimultiButton{
+  background-color: #D2B48C; /* couleur de fond marron clair */
+  color: white; /* texte en blanc */
+  font-size: 16px; /* taille de police de caractères */
+  font-weight: bold; /* texte en gras */
+  padding: 5px 15px; /* espace intérieur pour le bouton */
+  /*margin-top: 5px; /* espacement entre le bouton et les éléments précédents */
+  border-radius: 10px;
+  margin-bottom: 15px;
+  margin-left: 130px;
+}
+.rimage{
+ 
+  width: 140px; /* largeur de l'image */
+  height: 100px; /* hauteur de l'image */
+  background-color: #D2B48C;
+  background-image: url('imageRecipe.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 21px;
+
+}
+
+.idInputBlock {
+  padding: 15px; /* espace autour du champ d'entrée */
+  margin-left: 30px;
+  
+}
+
+
+
+.bouttonAnges{
+  padding: 5px 22px; /* espace intérieur pour le bouton */
+  margin-top: 5px; /* espacement entre le bouton et les éléments précédents */
+  border-radius: 10px;
+}
+
+.bouttonManagers{
+  padding: 5px 33px; /* espace intérieur pour le bouton */
+  margin-top: 5px; /* espacement entre le bouton et les éléments précédents */
+  border-radius: 10px;
+}
+.bouttonUpgrades{
+  padding: 5px 15px; /* espace intérieur pour le bouton */
+  margin-top: 5px; /* espacement entre le bouton et les éléments précédents */
+  border-radius: 10px;
+}
+
+.bouttonsMenus{
+  /*background-color: rgba(255, 255, 255, 0.4); /* couleur de fond marron clair */
+  color: black; /* texte en blanc */
+  font-size: 16px; /* taille de police de caractères */
+  font-weight: bold; /* texte en gras */
+  padding: 5px 15px; /* espace intérieur pour le bouton */
+  margin-top: 5px; 
+}
+
+.SnackBar{
+  z-index:+1;
+}
+
+.petitRound{
+  width: 50px;
+  height:50px;
+  border-radius: 50%;
+}
+
 
 .barstyle {
   width: 200px; /* ajustez la valeur en fonction de la largeur souhaitée */
@@ -124,12 +232,13 @@ img {
 }
 
 
+
 .square{
   width : 200px;
   height : 150px;
   border-radius: 100%;
   margin-bottom: 20px;
-  margin-left: 90px;
+  margin-left: 60px;
   margin-top: 10px;
 }
 

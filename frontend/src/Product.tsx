@@ -152,13 +152,13 @@ export default function ProductComponent({ product, onProductionDone, onProductB
         <div className="produit" >
             <div className="lesdeux">
                 <div className="lepremier">
-                    <img onClick={startFabrication} src={"http://localhost:4000/" + product.logo} />
+                    <img onClick={startFabrication} src={"https://isiscapitalistgraphql.kk.kurasawa.fr/" + product.logo} />
                 </div>
                 <div className="lesecond">
-                    <span className="productName"> {product.name}:</span>
-                    <span className="producQuantity">{product.quantite} </span>
-                    <button className="achetezmoi" onClick={() =>onProductBuy(product)} disabled={money < product.cout}>Buy me</button>
-                    <div className="tempsRestant"> Temps restant: {product.vitesse} </div>
+                    <span className="productName"> {product.name}</span>
+                    <span className="producQuantity"> qt : {product.quantite} </span>
+                    <button className="achetezmoi" onClick={() =>onProductBuy(product)} disabled={money < product.cout}>Buy :{qtmulti}</button>
+                    {/*<div className="tempsRestant"> Temps restant: {product.vitesse} </div>*/}
                     <div className="price"> price: {product.cout} $</div>
                 </div>
             </div>

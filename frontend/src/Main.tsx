@@ -7,6 +7,59 @@ import { Palier } from './world';
 import ManagerComponent from "./Managers";
 import UpgradeComponent from "./Upgrades";
 import AngeComponent from "./Ange";
+import { gql, useApolloClient, useMutation } from '@apollo/client';
+import {Snackbar, Alert, Button} from "@mui/material";
+
+
+
+
+//liaison avec le backend
+//appel des mutations du backend
+const ACHETER_PRODUIT = gql`
+    mutation acheterQtProduit($id: Int!, $quantite: Int!) {
+        acheterQtProduit(id: $id, quantite: $quantite) {
+            id
+        }
+    }
+`;
+
+const ENGAGER_MANAGER = gql`
+    mutation engagerManager($name: String!) {
+      engagerManager(name: $name) {
+            name
+        }
+    }
+`;
+
+const ANGE_UPGRADE = gql`
+    mutation acheterAngelUpgrade($name: String!) {
+      acheterAngelUpgrade(name: $name) {
+            name
+        }
+    }
+`;
+
+const CASH_UPGRADE = gql`
+    mutation acheterCashUpgrade($name: String!) {
+      acheterCashUpgrade(name: $name) {
+            name
+        }
+    }
+`;
+
+const RESET_WORLD = gql`
+    mutation resetWorld {
+      resetWorld {
+        name
+        }
+    }
+`;
+
+
+
+
+
+
 
 type MainProps = {
   loadworld: World
@@ -19,6 +72,58 @@ export default function Main({ loadworld, username }: MainProps) {
     setWorld(JSON.parse(JSON.stringify(loadworld)) as World)
   }, [loadworld])
 
+
+
+
+
+  const [acheterProduit] = useMutation(ACHETER_PRODUIT,
+    {
+      context: { headers: { "x-user": username } },
+      onError: (error): void => {
+        // actions en cas d'erreur
+      }
+    }
+  )
+
+  const [acheterAngelUpgrade] = useMutation(ANGE_UPGRADE,
+    {
+      context: { headers: { "x-user": username } },
+      onError: (error): void => {
+        // actions en cas d'erreur
+      }
+    }
+  )
+
+  const [engagerManager] = useMutation(ENGAGER_MANAGER,
+    {
+      context: { headers: { "x-user": username } },
+      onError: (error): void => {
+        // actions en cas d'erreur
+      }
+    }
+  )
+
+  const [acheterCashUpgrade] = useMutation(CASH_UPGRADE,
+    {
+      context: { headers: { "x-user": username } },
+      onError: (error): void => {
+        // actions en cas d'erreur
+      }
+    }
+  )
+
+  const [newWorld] = useMutation(RESET_WORLD,
+    {
+      context: { headers: { "x-user": username } },
+      onError: (error): void => {
+        // actions en cas d'erreur
+      }
+    }
+  )
+
+
+
+  //initialisation des hooks 
   const [money, setMoney] = useState(world.money);
   const [ange, setAnge] = useState(world.activeangels);
   const [qtmulti, setQtmulti] = useState("x1");
@@ -26,6 +131,13 @@ export default function Main({ loadworld, username }: MainProps) {
   const [showUpgrades, setShowUpgrades] = useState(false);
   const [showAnges, setShowAnges] = useState(false);
   const [score, setScore] = useState(world.score);
+  const [bonusAnge, setBonusAnge] = useState(world.angelbonus);
+  const [snackBarUnlocks, setSnackBarUnlocks] = useState(false);
+  const [snackBarAllUnlocks, setSnackBarAllUnlocks] = useState(false);
+  const [actualUnlocks, setActualUnlocks] = useState(world.allunlocks[0]);
+  const [actualAllUnlocks, setActualAllUnlocks] = useState(world.allunlocks[0]);
+  const [snackBarReset, setSnackBarReset] = useState(false);
+  const [resetAnge, setResetAnge] = useState(0);
 
   function onProductionDone(p: Product): void {
     // calcul de la somme obtenue par la production du produit
@@ -37,6 +149,8 @@ export default function Main({ loadworld, username }: MainProps) {
     setMoney(newMoney)
   }
 
+
+  // hireManager
   function hireManager(manager: Palier): void {
     manager.unlocked = true;
     let produit = world.products.find(p => p.id === manager.idcible)
@@ -48,6 +162,7 @@ export default function Main({ loadworld, username }: MainProps) {
         let newMoney = money - manager.seuil      
         setMoney(newMoney)      
     }
+    engagerManager({ variables: { name: manager.name } });
   }
 
 
@@ -72,7 +187,11 @@ export default function Main({ loadworld, username }: MainProps) {
             console.log("argent++")
 
         }
-      }  
+      } 
+      
+      acheterCashUpgrade({ variables: { name: upgrade.name } });
+
+
   }
 
   function buyAnge(angel: Palier): void {
@@ -94,8 +213,15 @@ export default function Main({ loadworld, username }: MainProps) {
 
         })
       }
+      acheterAngelUpgrade({ variables: { name: angel.name } });
   }
   
+// reset world
+function resetWorld() {
+  newWorld({ variables: {} });
+  window.location.reload();
+}
+
 // affichage des fenetres
   function handleManager(){
     setShowManagers(!showManagers)
@@ -108,6 +234,8 @@ export default function Main({ loadworld, username }: MainProps) {
   }
 
   function onProductBuy(p: Product) {
+    let lastQuantite = p.quantite
+
     if(money >= p.cout){
       if(qtmulti==="x1"){
         p.quantite += 1
@@ -116,30 +244,111 @@ export default function Main({ loadworld, username }: MainProps) {
         setMoney(moneyWorld)
 
         console.log("testtttttt");
+        acheterProduit({ variables: { id: p.id, quantite: 1 } });
       }
       if(qtmulti==="x10"){
         p.quantite += 10
         let moneyWorld = money - ((Math.pow(p.croissance, 10) - 1) / (p.croissance - 1) * p.cout)
         p.cout = p.cout * Math.pow(p.croissance, 10)
         setMoney(moneyWorld)
+        acheterProduit({ variables: { id: p.id, quantite: 10 } });
       }
       if(qtmulti==="x100"){
         p.quantite += 100
         let moneyWorld = money - ((Math.pow(p.croissance, 100) - 1) / (p.croissance - 1) * p.cout)
         p.cout = p.cout * Math.pow(p.croissance, 100)
         setMoney(moneyWorld)
+        acheterProduit({ variables: { id: p.id, quantite: 100 } });
+      }
+
+      if (qtmulti === "Max"){
+        // on calcule le maximum de produit qu'on peut acheter
+        let maxCanBuy = Math.floor((Math.log10(((money * (p.croissance - 1))/p.cout) + 1))/Math.log10(p.croissance))
+
+        p.quantite += maxCanBuy
+        let moneyWorld = money - ((Math.pow(p.croissance, maxCanBuy) - 1) / (p.croissance - 1) * p.cout)
+        p.cout = p.cout * Math.pow(p.croissance, maxCanBuy)
+        setMoney(moneyWorld)
+        acheterProduit({ variables: { id: p.id, quantite: maxCanBuy } });
       }
     }
-  }
+    p.paliers.forEach(u => {
+      if (u.idcible === p.id && p.quantite >= u.seuil && lastQuantite<u.seuil) {
+        u.unlocked = true
+        setActualUnlocks(u)
+        setSnackBarUnlocks(true)
+        
+        if (u.typeratio === "vitesse") {
+          p.vitesse = Math.round(p.vitesse / u.ratio)
+        }
+        if (u.typeratio === "gain") {
+          p.revenu = p.revenu * u.ratio
+        }
+        if (u.typeratio === "ange") {
+          world.angelbonus += u.ratio
+        }
+      }
+    })
 
 
+
+      // pour voir si les unlocks sont débloquées pour pouvoir faire une notification après 
+
+      world.allunlocks.forEach(a => {
+        if (p.quantite >= a.seuil && lastQuantite<a.seuil) {
+          let allunlocks = true
+          // on parcours les produits pour savoir s'il ont tous un quantité suffisante
+          world.products.forEach(p => {
+            if (p.quantite < a.seuil) {
+              allunlocks = false
+            }
+          })
+          if (allunlocks) {
+            a.unlocked = true
+            setActualAllUnlocks(a)
+            setSnackBarAllUnlocks(true)
+            if (a.typeratio === "ange") {
+              world.angelbonus += a.ratio
+            } else {
+              let produitCible = world.products.find(p => p.id === a.idcible)
   
+              if (produitCible === undefined) {
+                throw new Error(
+                  `Le produit avec l'id ${a.idcible} n'existe pas`)
+              } else {
+                if (a.typeratio === "vitesse") {
+                  produitCible.vitesse = Math.round(produitCible.vitesse / a.ratio)
+                }
+                if (a.typeratio === "gain") {
+                  produitCible.revenu = Math.round(produitCible.revenu * a.ratio)
+                }
+              }
+            }
+          }
+        }
+      })
+  
+}
+
+
+
+
+
+  // fonction qui change la variable qtmulti pour l'achat des produits
   function handleChange() {
     if(qtmulti==="x1"){setQtmulti("x10");}
     if(qtmulti==="x10"){setQtmulti("x100");}
-    if(qtmulti==="x100"){setQtmulti("x1");}
+    if(qtmulti==="x100"){setQtmulti("Max");}
     if(qtmulti==="Max"){setQtmulti("x1");}
   }
+
+  // affiche le nombre d'ange qu'on va gagner si on reset le world et demande confirmation pour le reset
+  function clickReset(){
+    setSnackBarReset(true)
+    let calculAnge = Math.round(150 * Math.sqrt(score / Math.pow(10, 10))) - world.totalangels
+    setResetAnge(calculAnge)
+  }
+
 
   return (
     <div className="App">
@@ -147,28 +356,38 @@ export default function Main({ loadworld, username }: MainProps) {
       <div className="header">
         <div> <img className="square" src={"http://localhost:4000/" + world.logo} /> </div>
         <span className="worldName"> {world.name} </span>
-        <div>
-          <div className="textML"> Your MarloupeMoney </div>
+        <div className="scoreMl">
+          <div className="textML"> MarloupeMoney </div>
           <span dangerouslySetInnerHTML={{ __html: transform(money)}}/>
           <div className="textAngels">angels : </div>
           <span dangerouslySetInnerHTML={{ __html: transform(ange)}}/>
           <div className="textScore">score : </div>
           <span dangerouslySetInnerHTML={{ __html: transform(score)}}/>
         </div>
-        <div> 
-        <button className="qultimultiButton"onClick={() => handleChange()}>buy: {qtmulti} </button>
-        </div>
-
       </div>
 
+        <div> 
+          <button className="qultimultiButton"onClick={() => handleChange()}>multiply the purchase of your products : {qtmulti} !</button>
+        </div>
+
       <div className="main">
-        <div className="titreMenu"> liste des boutons de menu 
-        <button className="bouttonManagers" onClick={() => handleManager()} >Managers</button>
-        {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money}/>}
-        <button className="bouttonUpgrades" onClick={() => handleUpgrade()} > CashUpgrades</button>
-        {showUpgrades && <UpgradeComponent loadworld={world} buyUpgrade={buyUpgrade} handleUpgrade={handleUpgrade} showUpgrades={showUpgrades} money={money}/>}
-        <button className="bouttonAnges" onClick={() => handleAnge()} >show Angels</button>
-        {showAnges && <AngeComponent loadworld={world} buyAnge={buyAnge} handleAnge={handleAnge} showAnges={showAnges} ange={ange} angelupgrades={new Palier}/>}
+        
+        <div className="titreMenu"> Table service
+          <div className="bouttonsMenus">
+            <br></br><button className="bouttonManagers" onClick={() => handleManager()}>Managers </button>
+            {showManagers && <ManagerComponent loadworld={world} hireManager={hireManager} handleManager={handleManager} showManagers={showManagers} money={money}/>}
+            <br></br><button className="bouttonUpgrades" onClick={() => handleUpgrade()} > CashUpgrades</button>
+            {showUpgrades && <UpgradeComponent loadworld={world} buyUpgrade={buyUpgrade} handleUpgrade={handleUpgrade} showUpgrades={showUpgrades} money={money}/>}
+            <br></br><button className="bouttonAnges" onClick={() => handleAnge()} >show Angels</button>
+            {showAnges && <AngeComponent loadworld={world} buyAnge={buyAnge} handleAnge={handleAnge} showAnges={showAnges} ange={ange}/>}
+
+            <button className="rimage" id="reset-world" onClick={() => clickReset()} disabled={(Math.round(150 * Math.sqrt(score / Math.pow(10, 10))) - world.totalangels)<0}>
+            </button>
+
+
+          </div>
+
+
 
         <div>
           {
@@ -207,6 +426,34 @@ export default function Main({ loadworld, username }: MainProps) {
 
         </div>
       </div>
+
+      <div className="SnackBar">
+        <Snackbar open={snackBarUnlocks} autoHideDuration={3000} onClose={() => setSnackBarUnlocks(false)}>
+          <Alert severity="success" sx={{ width: '100%' }}>
+            <img className="petitRound" src={"http://localhost:4000/" + actualUnlocks.logo}/>
+            Vous avez {actualUnlocks.name} !
+          </Alert>
+        </Snackbar>
+      </div>
+
+      <div className="SnackBar">
+        <Snackbar open={snackBarAllUnlocks} autoHideDuration={3000} onClose={() => setSnackBarAllUnlocks(false)}>
+          <Alert severity="success" sx={{ width: '100%' }}>
+            <img className="petitRound" src={"http://localhost:4000/" + actualAllUnlocks.logo}/>
+            Vous avez {actualAllUnlocks.name} !
+          </Alert>
+        </Snackbar>
+      </div>
+
+      <div className="SnackBar">
+        <Snackbar open={snackBarReset} autoHideDuration={10000} onClose={() => setSnackBarReset(false)}>
+          <Alert severity="error" sx={{ width: '100%' }}>
+            Es-tu sûr de vouloir reset ton Marloupe ? Avec {resetAnge} anges 
+            <Button onClick={() => resetWorld()}>Yes</Button>
+          </Alert>
+        </Snackbar>
+      </div>
+
     </div>
     
   )

@@ -100,7 +100,6 @@ function App() {
 
 
     const [username, setUsername] = useState(lusername)
-
     const onUserNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
 
     localStorage.setItem("username", event.currentTarget.value);
@@ -137,8 +136,9 @@ function App() {
 
   return (
     <div className='MarloupeApp'>
-      <div> Your ID : </div>
-      <input type="text" value={username} onChange={onUserNameChanged} />
+      <div className='idInputBlock'>
+        <input className='idInput' type="text" value={username} onChange={onUserNameChanged} />
+      </div>
       {corps}
       
     </div>

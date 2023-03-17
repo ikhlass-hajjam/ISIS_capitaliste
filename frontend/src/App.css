@@ -40,11 +40,11 @@
 
 .header {
   display: grid;
-  grid-template-columns: 20% 50% 15% 10%;
+  grid-template-columns: 10% 70% 15%;
   }
  .main {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 25% 70%;
   }
  .product {
   display: grid;

@@ -1,5 +1,6 @@
 import { World, Palier } from "./world";
 import React, { useState } from 'react';
+import {Snackbar, Alert} from "@mui/material";
 
 
 type AngeProps = {
@@ -8,14 +9,24 @@ type AngeProps = {
     handleAnge: () => void,
     showAnges:Boolean
     ange: number,
-    angelupgrades: Palier
+    //angelupgrades: Palier
 
 }
 
-export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges,ange, angelupgrades}:AngeProps) {
+export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges,ange}:AngeProps) {
    
 
     const [world,setWorld] = useState(loadworld)
+    // pour les notifications alert 
+    const [snackBarAnge, setSnackBarAnge] = useState(false);
+    const [actualAnge, setSnackActualAnge] = useState(world.angelupgrades[0]);
+
+    function handleClickAnge(ange:Palier){
+        setSnackBarAnge(true)
+        buyAnge(ange)
+        setSnackActualAnge(ange)
+    }
+
 
     return (
         <div className="Ange" >
@@ -45,11 +56,11 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                                                 </div>
                                                 <div className="infosmanager">
                                                     <div className="managername">{ange.name}</div>
-                                                   
+                                        
                                                     <div className="managercost">{ange.seuil}</div>
                                                 </div>
-                                                <div onClick={() => buyAnge(ange)}>
-                                                    <button className= "hireButton">Capter les anges </button>
+                                                <div onClick={() => handleClickAnge(ange)}>
+                                                    <button className= "hireButton"> Buy with your angels! </button>
                                                 </div>
                                             </div>
                                         );
@@ -58,6 +69,17 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
                             }
                             
                         </div>
+
+                        <div>
+                            <Snackbar open={snackBarAnge} autoHideDuration={3000} onClose={() => setSnackBarAnge(false)}>
+                                <Alert severity="success" sx={{ width: '100%' }}>
+                                    <img className="petitRound" src={"http://localhost:4000/" + actualAnge.logo}/>
+                                    Vous venez de faire un placement de produit {actualAnge.name}
+                                </Alert>
+                          </Snackbar>
+                        </div>   
+
+
                     </div>
                 }
             </div>
