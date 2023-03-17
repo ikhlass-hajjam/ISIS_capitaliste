@@ -1,7 +1,7 @@
 module.exports = {
     "name": "Nice Marloupe",
     "logo": "icones/backgroudwelcome.jpg",
-    "money": 1000,
+    "money": 0,
     "score": 0,
     "totalangels": 0,
     "activeangels": 0,
@@ -167,12 +167,12 @@ module.exports = {
             "ratio": 2,
             "typeratio": "gain",
             "unlocked": false
-        },
+        }
 
     ],
     "upgrades": [
         {
-            "name": "Accras ",
+            "name": "Accras",
             "logo": "icones/accras.jpg",
             "seuil": 150,
             "idcible": 1,
@@ -227,12 +227,12 @@ module.exports = {
     ],
     "angelupgrades": [
         {
-            "name": "Angel Sacrifice",
+            "name": "Angel",
             "logo": "icones/angel.png",
-            "seuil": 10,
+            "seuil": 100,
             "idcible": 0,
             "ratio": 3,
-            "typeratio": "gain",
+            "typeratio": "ange",
             "unlocked": false
         },
     ],
