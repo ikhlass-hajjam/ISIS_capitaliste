@@ -12,7 +12,7 @@ type UpgradeProps = {
 }
 
 export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, showUpgrades, money}:UpgradeProps) {
-    //let showUpgrades = false; // déclaration d'une variable booléenne showUpgrades à true
+    
 
     const [world,setWorld] = useState(loadworld)
     const [snackBarUpgrade, setSnackBarUpgrade] = useState(false);
@@ -75,7 +75,7 @@ export default function UpgradeComponent({loadworld, buyUpgrade, handleUpgrade, 
                         </div>
 
                     
-
+                                {/** pour l'alerte de snakc bar  qui va apparaitre */}
                         <div className="SnackBar">
                             <Snackbar open={snackBarUpgrade} autoHideDuration={3000} onClose={() => setSnackBarUpgrade(false)}>
                                 <Alert severity="success" sx={{ width: '100%' }}>

@@ -89,7 +89,7 @@ function App() {
   //let world= require("./world")
 
 
-
+    // pour le ID on fait pas avec les hooks sinon ça crée des problèmes 
     let lusername = localStorage.getItem("username");
     if (lusername === undefined) {
       lusername = "Artiste " + Math.floor(Math.random() * 10000);
@@ -132,7 +132,7 @@ function App() {
 
 
 
-  // c la meme variable n ==> logarithme , U0= wordl.money, q0 ets le taux de croissance, 
+  // c la variable n ==> logarithme , U0= wordl.money, q0 ets le taux de croissance, ==> pour la fonction à implémenter pour calcul max des produits 
 
   return (
     <div className='MarloupeApp'>
