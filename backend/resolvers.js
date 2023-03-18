@@ -129,33 +129,33 @@ module.exports = {
                 saveWorld(context)
                 return angelUpgrade
             }
-    },
-       /* acheterAngelUpgrade(parent, args, context) {
-            scaleScore(parent, args, context)
-            let angelUpgrade = context.world.angelupgrades.find(ange => ange.name === args.name)
-
-            if (angelUpgrade === undefined) {
-                throw new Error(`L'amélioration d'ange avec le nom ${args.name} n'existe pas.`);
-            } else {
-                context.world.money -= angelUpgrade.seuil;
-                angelUpgrade.unlocked = true;
-            
-            if (angelUpgrade.typeratio === "ange") {
-                context.world.angelbonus = Math.round(p.vitesse / upgrade.ratio);
-            }
-            if (angelUpgrade.typeratio === "gain") {
-                p.revenu *= angelUpgrade.ratio;
-            }
-
-            if (angelUpgrade.typeratio === "vitesse") {
-                p.revenu = Math.round(p.vitesse / angelUpgrade.ratio);
-            }
-        }
-            context.world.totalangels -= angelUpgrade.seuil
-            
-            saveWorld(context)
-            return angelUpgrade
-        },*/
+        },
+        /* acheterAngelUpgrade(parent, args, context) {
+             scaleScore(parent, args, context)
+             let angelUpgrade = context.world.angelupgrades.find(ange => ange.name === args.name)
+ 
+             if (angelUpgrade === undefined) {
+                 throw new Error(`L'amélioration d'ange avec le nom ${args.name} n'existe pas.`);
+             } else {
+                 context.world.money -= angelUpgrade.seuil;
+                 angelUpgrade.unlocked = true;
+             
+             if (angelUpgrade.typeratio === "ange") {
+                 context.world.angelbonus = Math.round(p.vitesse / upgrade.ratio);
+             }
+             if (angelUpgrade.typeratio === "gain") {
+                 p.revenu *= angelUpgrade.ratio;
+             }
+ 
+             if (angelUpgrade.typeratio === "vitesse") {
+                 p.revenu = Math.round(p.vitesse / angelUpgrade.ratio);
+             }
+         }
+             context.world.totalangels -= angelUpgrade.seuil
+             
+             saveWorld(context)
+             return angelUpgrade
+         },*/
 
 
         resetWorld(parent, args, context) {
@@ -165,6 +165,11 @@ module.exports = {
                 context.world.activeangels += Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10))) - context.world.totalangels
                 context.world.totalangels = Math.round(150 * Math.sqrt(context.world.score / Math.pow(10, 10)))
             }
+            //garder les anges qui ont été gagnés
+            let totalangels = context.world.totalangels
+            let activeangels = context.world.activeangels
+            context.world.totalangels = totalangels
+            context.world.activeangels = activeangels
             //réinitialisation l'argent du monde à sa valeur initiale 
             context.world.money = money
             //Réinitialisation pour les différents utlisateurs
@@ -178,11 +183,7 @@ module.exports = {
             let managers = context.world.managers
             produit.managerUnlocked = false;
             managers.unlocked = false;
-            //garder les anges qui ont été gagnés
-            let totalangels = context.world.totalangels
-            let activeangels = context.world.activeangels
-            context.world.totalangels = totalangels
-            context.world.activeangels = activeangels
+            
         
             saveWorld(context)
             return context.world
@@ -191,6 +192,7 @@ module.exports = {
 
 
 };
+
 
 function saveWorld(context) {
     fs.writeFile("userworlds/" + context.user + "-world.json",
