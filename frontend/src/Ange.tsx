@@ -17,7 +17,6 @@ export default function AngeComponent({loadworld, buyAnge, handleAnge, showAnges
    
 
     const [world,setWorld] = useState(loadworld)
-    // pour les notifications alert 
     const [snackBarAnge, setSnackBarAnge] = useState(false);
     const [actualAnge, setSnackActualAnge] = useState(world.angelupgrades[0]);
 
